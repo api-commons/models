@@ -1,0 +1,58 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-4.0
+arazzo: 1.0.1
+info:
+  title: OpenAI interface core conformance
+  version: 1.0.0
+  summary: Discover a model, then use it. The smallest flow that proves core-tier support.
+  description: Both operations in the core tier, in the order a real client uses them. A provider that
+    completes this flow supports the interoperable core of the OpenAI interface; a provider that cannot
+    has no basis for the claim. Read-only apart from the completion itself, which is the cheapest possible
+    request.
+sourceDescriptions:
+- name: openaiProfile
+  url: ./openapi.yml
+  type: openapi
+workflows:
+- workflowId: core-conformance
+  summary: List models, then create a chat completion with the first one.
+  description: Run this against a provider that claims OpenAI compatibility. Step one reads the model
+    list and takes the first identifier it offers, so the flow never hardcodes a model name that only
+    one provider serves. Step two sends the smallest possible chat completion with it. A provider that
+    completes both steps supports the interoperable core of the OpenAI interface.
+  inputs:
+    type: object
+    properties:
+      prompt:
+        type: string
+        default: 'Reply with the word: ok'
+  steps:
+  - stepId: listModels
+    description: GET /models — declared by 71.7% of the publishing cohort.
+    operationId: $sourceDescriptions.openaiProfile.listModels
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.data[0].id
+      type: jsonpath
+    outputs:
+      modelId: $response.body#/data/0/id
+  - stepId: createChatCompletion
+    description: POST /chat/completions — declared by 87.5% of the publishing cohort.
+    operationId: $sourceDescriptions.openaiProfile.createChatCompletion
+    requestBody:
+      contentType: application/json
+      payload:
+        model: $steps.listModels.outputs.modelId
+        messages:
+        - role: user
+          content: $inputs.prompt
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.choices[0].message.content
+      type: jsonpath
+    outputs:
+      reply: $response.body#/choices/0/message/content
+  outputs:
+    model: $steps.listModels.outputs.modelId
+    reply: $steps.createChatCompletion.outputs.reply

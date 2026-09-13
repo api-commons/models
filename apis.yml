@@ -1,0 +1,65 @@
+aid: standard-openai
+name: Models
+type: Standard
+description: |-
+  De facto standards for the model layer. The OpenAI API became an industry contract by
+  being implemented by other people; this profiles that interface as adopters actually
+  build it, grades every operation into core, extended and vendor tiers by measured
+  adoption, and publishes a registry of who implements what.
+
+  Core is two operations: POST /chat/completions and GET /models. Nothing else clears a
+  third of the cohort.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+- Application Programming Interface
+- API
+- Models
+- LLM
+- Inference
+- Artificial Intelligence
+created: '2026-09-13'
+modified: '2026-09-13'
+url: https://raw.githubusercontent.com/api-commons/models/main/apis.yml
+specificationVersion: '0.20'
+apis:
+- aid: standard-openai:openai-v1
+  name: The OpenAI Interface
+  description: The interoperable surface of the OpenAI API, as adopters actually implement it.
+  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  humanURL: https://apicommons.org/standards/models/
+  baseURL: https://api.openai.com/v1
+  tags:
+  - API
+  - Models
+  - LLM
+  - Inference
+  properties:
+  - type: OpenAPI
+    url: https://raw.githubusercontent.com/api-commons/models/main/standard/openai-v1/openapi.yml
+  - type: Overlay
+    url: https://raw.githubusercontent.com/api-commons/models/main/standard/openai-v1/overlay.yml
+  - type: Arazzo
+    url: https://raw.githubusercontent.com/api-commons/models/main/standard/openai-v1/arazzo/core-conformance.yml
+  - type: MCP
+    url: https://raw.githubusercontent.com/api-commons/models/main/standard/openai-v1/mcp/tools.json
+  - type: SpectralRules
+    url: https://raw.githubusercontent.com/api-commons/models/main/standard/openai-v1/spectral/openai-profile.yaml
+  - type: Adopters
+    url: https://raw.githubusercontent.com/api-commons/models/main/adopters/adopters.yml
+  - type: GitHubRepository
+    url: https://github.com/api-commons/models
+  - type: Documentation
+    url: https://apicommons.org/standards/models/
+  - type: License
+    url: https://github.com/api-commons/models/blob/main/LICENSE
+  contact:
+  - FN: API Evangelist
+    email: info@apievangelist.com
+common:
+- type: Commons
+  url: https://apicommons.org/standards/models/
+- type: Discussion
+  url: https://github.com/orgs/api-commons/discussions
+maintainers:
+- FN: Kin Lane
+  email: info@apievangelist.com

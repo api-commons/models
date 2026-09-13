@@ -1,0 +1,22 @@
+# Claims compatibility and declares neither core operation. The two core rules fire here;
+# they cannot fire in noncompliant.yaml, which has to declare the paths to get them wrong.
+openapi: 3.1.0
+info:
+  title: Compatible In Name Only
+  version: 1.0.0
+  description: The README says OpenAI-compatible. The spec does not.
+paths:
+  /v1/generate:
+    post:
+      operationId: generate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+      responses:
+        '200':
+          description: Text.

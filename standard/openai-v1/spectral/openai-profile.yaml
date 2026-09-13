@@ -1,0 +1,236 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-4.0
+#
+# The OpenAI interface profile, as a Spectral ruleset.
+#
+# Point it at a provider's own OpenAPI and it reports whether they reach the core tier
+# of the OpenAI interface, and whether the operations they do declare have the shape a
+# client written against OpenAI expects.
+#
+# Tiers are measured, not asserted: core is the set of operations declared by a majority
+# of the 120 providers who claim OpenAI compatibility AND publish their own OpenAPI.
+# That is POST /chat/completions (87.5%) and GET /models (71.7%), and nothing else —
+# no third operation clears 33%. See ../profile.yml for every grading and its evidence.
+#
+# WHAT THIS DOES NOT CHECK
+#   - Runtime behaviour. A spec is a claim about a server, not the server.
+#   - Streaming semantics. SSE framing is not expressible in OpenAPI, so `stream: true`
+#     is checked as a parameter and never as a wire format.
+#   - Model naming. Whether `gpt-4o` means the same thing at two providers is outside
+#     any ruleset.
+#   - Extended and vendor tiers. Declaring them is not a defect, so they are not linted
+#     here beyond one informational notice.
+#
+# Built-in functions only, so it runs unchanged in the browser validator.
+formats: [oas3]
+
+aliases:
+  ChatCompletionPaths:
+    - "$.paths[?(@property.match(/(^|\\/)chat\\/completions$/))]"
+  ModelsPaths:
+    - "$.paths[?(@property.match(/(^|\\/)models$/))]"
+
+rules:
+
+  openai-core-create-chat-completion:
+    description: >-
+      The core of the OpenAI interface is POST .../chat/completions — declared by 87.5%
+      of the publishing cohort, more than twice the rate of any other operation. A spec
+      without it is not describing an OpenAI-compatible API.
+    message: "No chat completions path found. This is the core of the interface."
+    severity: error
+    documentationUrl: https://apicommons.org/standards/models/#core
+    given: "$"
+    then:
+      field: paths
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          minProperties: 1
+          # "at least one property name matches" — expressed as "not (no property name
+          # matches)", because JSON Schema has no positive form of this. `required` cannot
+          # take a pattern, and patternProperties never asserts presence.
+          not:
+            propertyNames:
+              not:
+                pattern: "(^|/)chat/completions$"
+
+  openai-core-list-models:
+    description: >-
+      GET .../models is the second and last core operation — declared by 71.7% of the
+      publishing cohort. Clients discover before they call; without it a caller has to
+      hardcode model identifiers.
+    message: "No models path found. Clients cannot discover what this provider serves."
+    severity: error
+    documentationUrl: https://apicommons.org/standards/models/#core
+    given: "$"
+    then:
+      field: paths
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          minProperties: 1
+          not:
+            propertyNames:
+              not:
+                pattern: "(^|/)models$"
+
+  openai-chat-completion-has-request-body:
+    description: >-
+      A chat completions operation must declare a request body. Checked on the operation
+      rather than on the body, because a Spectral `then.field` aimed at a field that is
+      absent is silently skipped — the absence would never be reported.
+    message: "The chat completions operation declares no requestBody."
+    severity: error
+    documentationUrl: https://apicommons.org/standards/models/#core
+    given: "#ChatCompletionPaths.post"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          required: [requestBody]
+
+  openai-chat-completion-request-shape:
+    description: >-
+      A chat completion request carries `model` and `messages`. These two fields are what
+      every client written against the OpenAI interface sends; a body that requires
+      something else is a different API wearing the same path.
+    message: "The chat completion request must require both `model` and `messages`."
+    severity: error
+    documentationUrl: https://apicommons.org/standards/models/#core
+    given: "#ChatCompletionPaths.post.requestBody.content['application/json'].schema"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          # `required` may sit at the top level or inside any allOf branch. OpenAI's own
+          # spec composes: CreateChatCompletionRequest is a bare allOf, and
+          # required: [model, messages] lives in the second branch. A rule that reads only
+          # the top level reports the canonical spec as non-conformant — it did, before
+          # this was generalised.
+          allOf:
+            - anyOf:
+                - type: object
+                  required: [required]
+                  properties:
+                    required:
+                      type: array
+                      contains:
+                        const: model
+                - type: object
+                  required: [allOf]
+                  properties:
+                    allOf:
+                      type: array
+                      contains:
+                        type: object
+                        required: [required]
+                        properties:
+                          required:
+                            type: array
+                            contains:
+                              const: model
+            - anyOf:
+                - type: object
+                  required: [required]
+                  properties:
+                    required:
+                      type: array
+                      contains:
+                        const: messages
+                - type: object
+                  required: [allOf]
+                  properties:
+                    allOf:
+                      type: array
+                      contains:
+                        type: object
+                        required: [required]
+                        properties:
+                          required:
+                            type: array
+                            contains:
+                              const: messages
+
+  openai-chat-completion-response-shape:
+    description: >-
+      A chat completion response carries `choices`. A client reads
+      `choices[0].message.content`; a response shaped any other way breaks every caller
+      that was pointed here by a base-URL change.
+    message: "The 200 response should expose `choices`."
+    severity: warn
+    documentationUrl: https://apicommons.org/standards/models/#core
+    given: "#ChatCompletionPaths.post.responses['200'].content['application/json'].schema"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          # Same composition caveat as the request rule: a provider may compose the
+          # response with allOf, so look at the top level and at every branch.
+          anyOf:
+            - type: object
+              required: [properties]
+              properties:
+                properties:
+                  type: object
+                  required: [choices]
+            - type: object
+              required: [allOf]
+              properties:
+                allOf:
+                  type: array
+                  contains:
+                    type: object
+                    required: [properties]
+                    properties:
+                      properties:
+                        type: object
+                        required: [choices]
+
+  openai-models-response-shape:
+    description: >-
+      A models listing carries `data`. This is the field the conformance flow reads to
+      pick a model before calling chat completions.
+    message: "The 200 response should expose `data`."
+    severity: warn
+    documentationUrl: https://apicommons.org/standards/models/#core
+    given: "#ModelsPaths.get.responses['200'].content['application/json'].schema"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          # Same composition caveat as the request rule: a provider may compose the
+          # response with allOf, so look at the top level and at every branch.
+          anyOf:
+            - type: object
+              required: [properties]
+              properties:
+                properties:
+                  type: object
+                  required: [data]
+            - type: object
+              required: [allOf]
+              properties:
+                allOf:
+                  type: array
+                  contains:
+                    type: object
+                    required: [properties]
+                    properties:
+                      properties:
+                        type: object
+                        required: [data]
+
+  openai-vendor-surface-declared:
+    description: >-
+      Assistants, ChatKit, Realtime and the organization administration surface are
+      vendor tier — under 5% of the cohort declares any of them. Declaring one is not a
+      defect, but it is a claim almost nobody else makes, and clients will not expect it.
+    message: "This path is vendor tier: effectively OpenAI-only across the measured cohort."
+    severity: info
+    documentationUrl: https://apicommons.org/standards/models/#vendor
+    given: "$.paths[?(@property.match(/(^|\\/)(assistants|chatkit|realtime)(\\/|$)/))]"
+    then:
+      function: falsy

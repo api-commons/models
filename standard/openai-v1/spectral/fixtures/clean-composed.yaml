@@ -1,0 +1,69 @@
+# The same core tier, composed with allOf the way OpenAI's own spec composes it.
+# This fixture exists because the first version of the request rule read only the
+# top-level `required` and reported OpenAI's canonical spec as non-conformant.
+openapi: 3.1.0
+info:
+  title: Composed Inference API
+  version: 1.0.0
+paths:
+  /v1/chat/completions:
+    post:
+      operationId: createChatCompletion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              allOf:
+                - type: object
+                  properties:
+                    temperature:
+                      type: number
+                - type: object
+                  required: [model, messages]
+                  properties:
+                    model:
+                      type: string
+                    messages:
+                      type: array
+                      items:
+                        type: object
+      responses:
+        '200':
+          description: A chat completion.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      id:
+                        type: string
+                  - type: object
+                    required: [choices]
+                    properties:
+                      choices:
+                        type: array
+                        items:
+                          type: object
+  /v1/models:
+    get:
+      operationId: listModels
+      responses:
+        '200':
+          description: The model list.
+          content:
+            application/json:
+              schema:
+                allOf:
+                  - type: object
+                    properties:
+                      object:
+                        type: string
+                  - type: object
+                    required: [data]
+                    properties:
+                      data:
+                        type: array
+                        items:
+                          type: object

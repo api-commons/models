@@ -1,0 +1,2402 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-4.0
+profile: openai-v1
+title: The OpenAI Interface
+generated: '2026-09-13'
+generated_by: scripts/build-profile.py
+upstream:
+  repository: https://github.com/openai/openai-openapi
+  commit: 38170fdddbb6a1813eae6c6587ee17cf2987185b
+  license: MIT
+  openapi: 3.1.0
+  info_version: 2.3.0
+  paths: 215
+  operations: 338
+method:
+  summary: 'Tiers are measured against what adopters publish, not asserted. Each METHOD and path is graded
+    by the share of the publishing cohort that declares it. Grading by path alone credits every method
+    on a path equally, which is wrong: GET and POST on /chat/completions are not implemented at the same
+    rate.'
+  cohort: 120
+  claimants: 211
+  cohort_definition: 211 providers in the API Evangelist catalog state OpenAI compatibility. 120 of them
+    publish an OpenAPI harvested byte-identical from their own site, and those are the denominator. A
+    provider may implement an operation without publishing a spec, so these shares are a floor.
+  thresholds:
+    core: '>= 50.0% of the cohort'
+    extended: '>= 5.0% and < 50.0%'
+    vendor: < 5.0%
+  tiers:
+    core: Implement these or a compatibility claim is false.
+    extended: Materially emulated, and where implementations diverge.
+    vendor: Effectively OpenAI-only in practice.
+counts:
+  core: 2
+  extended: 19
+  vendor: 317
+operations:
+- operationId: createChatCompletion
+  method: POST
+  path: /chat/completions
+  tier: core
+  adopters_declaring: 105
+  percent_of_cohort: 87.5
+  evidence: 105 of 120 adopters that publish their own OpenAPI declare this operation (87.5%).
+- operationId: listModels
+  method: GET
+  path: /models
+  tier: core
+  adopters_declaring: 86
+  percent_of_cohort: 71.7
+  evidence: 86 of 120 adopters that publish their own OpenAPI declare this operation (71.7%).
+- operationId: createEmbedding
+  method: POST
+  path: /embeddings
+  tier: extended
+  adopters_declaring: 39
+  percent_of_cohort: 32.5
+  evidence: 39 of 120 adopters that publish their own OpenAPI declare this operation (32.5%).
+- operationId: createCompletion
+  method: POST
+  path: /completions
+  tier: extended
+  adopters_declaring: 36
+  percent_of_cohort: 30.0
+  evidence: 36 of 120 adopters that publish their own OpenAPI declare this operation (30.0%).
+- operationId: createImage
+  method: POST
+  path: /images/generations
+  tier: extended
+  adopters_declaring: 28
+  percent_of_cohort: 23.3
+  evidence: 28 of 120 adopters that publish their own OpenAPI declare this operation (23.3%).
+- operationId: createResponse
+  method: POST
+  path: /responses
+  tier: extended
+  adopters_declaring: 26
+  percent_of_cohort: 21.7
+  evidence: 26 of 120 adopters that publish their own OpenAPI declare this operation (21.7%).
+- operationId: retrieveModel
+  method: GET
+  path: /models/{model}
+  tier: extended
+  adopters_declaring: 23
+  percent_of_cohort: 19.2
+  evidence: 23 of 120 adopters that publish their own OpenAPI declare this operation (19.2%).
+- operationId: createTranscription
+  method: POST
+  path: /audio/transcriptions
+  tier: extended
+  adopters_declaring: 22
+  percent_of_cohort: 18.3
+  evidence: 22 of 120 adopters that publish their own OpenAPI declare this operation (18.3%).
+- operationId: createSpeech
+  method: POST
+  path: /audio/speech
+  tier: extended
+  adopters_declaring: 17
+  percent_of_cohort: 14.2
+  evidence: 17 of 120 adopters that publish their own OpenAPI declare this operation (14.2%).
+- operationId: createFile
+  method: POST
+  path: /files
+  tier: extended
+  adopters_declaring: 17
+  percent_of_cohort: 14.2
+  evidence: 17 of 120 adopters that publish their own OpenAPI declare this operation (14.2%).
+- operationId: retrieveFile
+  method: GET
+  path: /files/{file_id}
+  tier: extended
+  adopters_declaring: 15
+  percent_of_cohort: 12.5
+  evidence: 15 of 120 adopters that publish their own OpenAPI declare this operation (12.5%).
+- operationId: createBatch
+  method: POST
+  path: /batches
+  tier: extended
+  adopters_declaring: 14
+  percent_of_cohort: 11.7
+  evidence: 14 of 120 adopters that publish their own OpenAPI declare this operation (11.7%).
+- operationId: retrieveBatch
+  method: GET
+  path: /batches/{batch_id}
+  tier: extended
+  adopters_declaring: 14
+  percent_of_cohort: 11.7
+  evidence: 14 of 120 adopters that publish their own OpenAPI declare this operation (11.7%).
+- operationId: listFiles
+  method: GET
+  path: /files
+  tier: extended
+  adopters_declaring: 14
+  percent_of_cohort: 11.7
+  evidence: 14 of 120 adopters that publish their own OpenAPI declare this operation (11.7%).
+- operationId: downloadFile
+  method: GET
+  path: /files/{file_id}/content
+  tier: extended
+  adopters_declaring: 14
+  percent_of_cohort: 11.7
+  evidence: 14 of 120 adopters that publish their own OpenAPI declare this operation (11.7%).
+- operationId: deleteFile
+  method: DELETE
+  path: /files/{file_id}
+  tier: extended
+  adopters_declaring: 13
+  percent_of_cohort: 10.8
+  evidence: 13 of 120 adopters that publish their own OpenAPI declare this operation (10.8%).
+- operationId: listBatches
+  method: GET
+  path: /batches
+  tier: extended
+  adopters_declaring: 12
+  percent_of_cohort: 10.0
+  evidence: 12 of 120 adopters that publish their own OpenAPI declare this operation (10.0%).
+- operationId: getResponse
+  method: GET
+  path: /responses/{response_id}
+  tier: extended
+  adopters_declaring: 9
+  percent_of_cohort: 7.5
+  evidence: 9 of 120 adopters that publish their own OpenAPI declare this operation (7.5%).
+- operationId: createTranslation
+  method: POST
+  path: /audio/translations
+  tier: extended
+  adopters_declaring: 8
+  percent_of_cohort: 6.7
+  evidence: 8 of 120 adopters that publish their own OpenAPI declare this operation (6.7%).
+- operationId: cancelBatch
+  method: POST
+  path: /batches/{batch_id}/cancel
+  tier: extended
+  adopters_declaring: 8
+  percent_of_cohort: 6.7
+  evidence: 8 of 120 adopters that publish their own OpenAPI declare this operation (6.7%).
+- operationId: createImageEdit
+  method: POST
+  path: /images/edits
+  tier: extended
+  adopters_declaring: 8
+  percent_of_cohort: 6.7
+  evidence: 8 of 120 adopters that publish their own OpenAPI declare this operation (6.7%).
+- operationId: deleteModel
+  method: DELETE
+  path: /models/{model}
+  tier: vendor
+  adopters_declaring: 5
+  percent_of_cohort: 4.2
+  evidence: 5 of 120 adopters that publish their own OpenAPI declare this operation (4.2%).
+- operationId: deleteResponse
+  method: DELETE
+  path: /responses/{response_id}
+  tier: vendor
+  adopters_declaring: 5
+  percent_of_cohort: 4.2
+  evidence: 5 of 120 adopters that publish their own OpenAPI declare this operation (4.2%).
+- operationId: listAgents
+  method: GET
+  path: /agents
+  tier: vendor
+  adopters_declaring: 4
+  percent_of_cohort: 3.3
+  evidence: 4 of 120 adopters that publish their own OpenAPI declare this operation (3.3%).
+- operationId: createAgent
+  method: POST
+  path: /agents
+  tier: vendor
+  adopters_declaring: 4
+  percent_of_cohort: 3.3
+  evidence: 4 of 120 adopters that publish their own OpenAPI declare this operation (3.3%).
+- operationId: listMessages
+  method: GET
+  path: /threads/{thread_id}/messages
+  tier: vendor
+  adopters_declaring: 4
+  percent_of_cohort: 3.3
+  evidence: 4 of 120 adopters that publish their own OpenAPI declare this operation (3.3%).
+- operationId: GetVideo
+  method: GET
+  path: /videos/{video_id}
+  tier: vendor
+  adopters_declaring: 4
+  percent_of_cohort: 3.3
+  evidence: 4 of 120 adopters that publish their own OpenAPI declare this operation (3.3%).
+- operationId: retrieveAgent
+  method: GET
+  path: /agents/{agent_id}
+  tier: vendor
+  adopters_declaring: 3
+  percent_of_cohort: 2.5
+  evidence: 3 of 120 adopters that publish their own OpenAPI declare this operation (2.5%).
+- operationId: listAssistants
+  method: GET
+  path: /assistants
+  tier: vendor
+  adopters_declaring: 3
+  percent_of_cohort: 2.5
+  evidence: 3 of 120 adopters that publish their own OpenAPI declare this operation (2.5%).
+- operationId: createConversation
+  method: POST
+  path: /conversations
+  tier: vendor
+  adopters_declaring: 3
+  percent_of_cohort: 2.5
+  evidence: 3 of 120 adopters that publish their own OpenAPI declare this operation (2.5%).
+- operationId: deleteConversation
+  method: DELETE
+  path: /conversations/{conversation_id}
+  tier: vendor
+  adopters_declaring: 3
+  percent_of_cohort: 2.5
+  evidence: 3 of 120 adopters that publish their own OpenAPI declare this operation (2.5%).
+- operationId: getConversation
+  method: GET
+  path: /conversations/{conversation_id}
+  tier: vendor
+  adopters_declaring: 3
+  percent_of_cohort: 2.5
+  evidence: 3 of 120 adopters that publish their own OpenAPI declare this operation (2.5%).
+- operationId: createModeration
+  method: POST
+  path: /moderations
+  tier: vendor
+  adopters_declaring: 3
+  percent_of_cohort: 2.5
+  evidence: 3 of 120 adopters that publish their own OpenAPI declare this operation (2.5%).
+- operationId: createThread
+  method: POST
+  path: /threads
+  tier: vendor
+  adopters_declaring: 3
+  percent_of_cohort: 2.5
+  evidence: 3 of 120 adopters that publish their own OpenAPI declare this operation (2.5%).
+- operationId: createMessage
+  method: POST
+  path: /threads/{thread_id}/messages
+  tier: vendor
+  adopters_declaring: 3
+  percent_of_cohort: 2.5
+  evidence: 3 of 120 adopters that publish their own OpenAPI declare this operation (2.5%).
+- operationId: createRun
+  method: POST
+  path: /threads/{thread_id}/runs
+  tier: vendor
+  adopters_declaring: 3
+  percent_of_cohort: 2.5
+  evidence: 3 of 120 adopters that publish their own OpenAPI declare this operation (2.5%).
+- operationId: deleteAgent
+  method: DELETE
+  path: /agents/{agent_id}
+  tier: vendor
+  adopters_declaring: 2
+  percent_of_cohort: 1.7
+  evidence: 2 of 120 adopters that publish their own OpenAPI declare this operation (1.7%).
+- operationId: createAssistant
+  method: POST
+  path: /assistants
+  tier: vendor
+  adopters_declaring: 2
+  percent_of_cohort: 1.7
+  evidence: 2 of 120 adopters that publish their own OpenAPI declare this operation (1.7%).
+- operationId: listPaginatedFineTuningJobs
+  method: GET
+  path: /fine_tuning/jobs
+  tier: vendor
+  adopters_declaring: 2
+  percent_of_cohort: 1.7
+  evidence: 2 of 120 adopters that publish their own OpenAPI declare this operation (1.7%).
+- operationId: createFineTuningJob
+  method: POST
+  path: /fine_tuning/jobs
+  tier: vendor
+  adopters_declaring: 2
+  percent_of_cohort: 1.7
+  evidence: 2 of 120 adopters that publish their own OpenAPI declare this operation (1.7%).
+- operationId: cancelResponse
+  method: POST
+  path: /responses/{response_id}/cancel
+  tier: vendor
+  adopters_declaring: 2
+  percent_of_cohort: 1.7
+  evidence: 2 of 120 adopters that publish their own OpenAPI declare this operation (1.7%).
+- operationId: ListSkills
+  method: GET
+  path: /skills
+  tier: vendor
+  adopters_declaring: 2
+  percent_of_cohort: 1.7
+  evidence: 2 of 120 adopters that publish their own OpenAPI declare this operation (1.7%).
+- operationId: CreateSkill
+  method: POST
+  path: /skills
+  tier: vendor
+  adopters_declaring: 2
+  percent_of_cohort: 1.7
+  evidence: 2 of 120 adopters that publish their own OpenAPI declare this operation (1.7%).
+- operationId: DeleteSkill
+  method: DELETE
+  path: /skills/{skill_id}
+  tier: vendor
+  adopters_declaring: 2
+  percent_of_cohort: 1.7
+  evidence: 2 of 120 adopters that publish their own OpenAPI declare this operation (1.7%).
+- operationId: getMessage
+  method: GET
+  path: /threads/{thread_id}/messages/{message_id}
+  tier: vendor
+  adopters_declaring: 2
+  percent_of_cohort: 1.7
+  evidence: 2 of 120 adopters that publish their own OpenAPI declare this operation (1.7%).
+- operationId: listRuns
+  method: GET
+  path: /threads/{thread_id}/runs
+  tier: vendor
+  adopters_declaring: 2
+  percent_of_cohort: 1.7
+  evidence: 2 of 120 adopters that publish their own OpenAPI declare this operation (1.7%).
+- operationId: getRun
+  method: GET
+  path: /threads/{thread_id}/runs/{run_id}
+  tier: vendor
+  adopters_declaring: 2
+  percent_of_cohort: 1.7
+  evidence: 2 of 120 adopters that publish their own OpenAPI declare this operation (1.7%).
+- operationId: createVideo
+  method: POST
+  path: /videos
+  tier: vendor
+  adopters_declaring: 2
+  percent_of_cohort: 1.7
+  evidence: 2 of 120 adopters that publish their own OpenAPI declare this operation (1.7%).
+- operationId: listAgentSessions
+  method: GET
+  path: /agents/sessions
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: retrieveAgentSession
+  method: GET
+  path: /agents/sessions/{session_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: getAssistant
+  method: GET
+  path: /assistants/{assistant_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: modifyAssistant
+  method: POST
+  path: /assistants/{assistant_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: createVoice
+  method: POST
+  path: /audio/voices
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: updateConversation
+  method: POST
+  path: /conversations/{conversation_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: updateEval
+  method: POST
+  path: /evals/{eval_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: retrieveFineTuningJob
+  method: GET
+  path: /fine_tuning/jobs/{fine_tuning_job_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: cancelFineTuningJob
+  method: POST
+  path: /fine_tuning/jobs/{fine_tuning_job_id}/cancel
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: listFineTuningEvents
+  method: GET
+  path: /fine_tuning/jobs/{fine_tuning_job_id}/events
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: createImageVariation
+  method: POST
+  path: /images/variations
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: Compactconversation
+  method: POST
+  path: /responses/compact
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: Getinputtokencounts
+  method: POST
+  path: /responses/input_tokens
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: listInputItems
+  method: GET
+  path: /responses/{response_id}/input_items
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: GetSkill
+  method: GET
+  path: /skills/{skill_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: deleteThread
+  method: DELETE
+  path: /threads/{thread_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: getThread
+  method: GET
+  path: /threads/{thread_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: deleteMessage
+  method: DELETE
+  path: /threads/{thread_id}/messages/{message_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: modifyMessage
+  method: POST
+  path: /threads/{thread_id}/messages/{message_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: modifyRun
+  method: POST
+  path: /threads/{thread_id}/runs/{run_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: cancelRun
+  method: POST
+  path: /threads/{thread_id}/runs/{run_id}/cancel
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: listVaults
+  method: GET
+  path: /vaults
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: createVault
+  method: POST
+  path: /vaults
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: deleteVault
+  method: DELETE
+  path: /vaults/{vault_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: retrieveVault
+  method: GET
+  path: /vaults/{vault_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: listVectorStores
+  method: GET
+  path: /vector_stores
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: createVectorStore
+  method: POST
+  path: /vector_stores
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: deleteVectorStore
+  method: DELETE
+  path: /vector_stores/{vector_store_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: getVectorStore
+  method: GET
+  path: /vector_stores/{vector_store_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: listVectorStoreFiles
+  method: GET
+  path: /vector_stores/{vector_store_id}/files
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: createVectorStoreFile
+  method: POST
+  path: /vector_stores/{vector_store_id}/files
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: deleteVectorStoreFile
+  method: DELETE
+  path: /vector_stores/{vector_store_id}/files/{file_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: getVectorStoreFile
+  method: GET
+  path: /vector_stores/{vector_store_id}/files/{file_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: ListVideos
+  method: GET
+  path: /videos
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: CreateVideoEdit
+  method: POST
+  path: /videos/edits
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: CreateVideoExtend
+  method: POST
+  path: /videos/extensions
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: DeleteVideo
+  method: DELETE
+  path: /videos/{video_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: RetrieveVideoContent
+  method: GET
+  path: /videos/{video_id}/content
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 0.8
+  evidence: 1 of 120 adopters that publish their own OpenAPI declare this operation (0.8%).
+- operationId: listAgentEnvironmentTemplates
+  method: GET
+  path: /agents/environments/templates
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: createAgentEnvironmentTemplate
+  method: POST
+  path: /agents/environments/templates
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: deleteAgentEnvironmentTemplate
+  method: DELETE
+  path: /agents/environments/templates/{environment_template_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieveAgentEnvironmentTemplate
+  method: GET
+  path: /agents/environments/templates/{environment_template_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: updateAgentEnvironmentTemplate
+  method: POST
+  path: /agents/environments/templates/{environment_template_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieveAgentEnvironment
+  method: GET
+  path: /agents/environments/{environment_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listAgentEnvironmentFiles
+  method: GET
+  path: /agents/environments/{environment_id}/files
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: createAgentEnvironmentFile
+  method: POST
+  path: /agents/environments/{environment_id}/files
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: createAgentSession
+  method: POST
+  path: /agents/sessions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: deleteAgentSession
+  method: DELETE
+  path: /agents/sessions/{session_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: updateAgentSession
+  method: POST
+  path: /agents/sessions/{session_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listAgentSessionArtifacts
+  method: GET
+  path: /agents/sessions/{session_id}/artifacts
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: deleteAgentSessionArtifact
+  method: DELETE
+  path: /agents/sessions/{session_id}/artifacts/{artifact_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieveAgentSessionArtifact
+  method: GET
+  path: /agents/sessions/{session_id}/artifacts/{artifact_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieveAgentSessionArtifactContent
+  method: GET
+  path: /agents/sessions/{session_id}/artifacts/{artifact_id}/content
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listAgentSessionEvents
+  method: GET
+  path: /agents/sessions/{session_id}/events
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: createAgentSessionEvents
+  method: POST
+  path: /agents/sessions/{session_id}/events
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listAgentSessionItems
+  method: GET
+  path: /agents/sessions/{session_id}/items
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listAgentSessionSubagents
+  method: GET
+  path: /agents/sessions/{session_id}/subagents
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieveAgentSessionSubagent
+  method: GET
+  path: /agents/sessions/{session_id}/subagents/{subagent_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listAgentSessionSubagentItems
+  method: GET
+  path: /agents/sessions/{session_id}/subagents/{subagent_id}/items
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listAgentSessionSubagentTurns
+  method: GET
+  path: /agents/sessions/{session_id}/subagents/{subagent_id}/turns
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieveAgentSessionSubagentTurn
+  method: GET
+  path: /agents/sessions/{session_id}/subagents/{subagent_id}/turns/{turn_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listAgentSessionSubagentTurnItems
+  method: GET
+  path: /agents/sessions/{session_id}/subagents/{subagent_id}/turns/{turn_id}/items
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listAgentSessionTurns
+  method: GET
+  path: /agents/sessions/{session_id}/turns
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieveAgentSessionTurn
+  method: GET
+  path: /agents/sessions/{session_id}/turns/{turn_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: updateAgent
+  method: POST
+  path: /agents/{agent_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: deleteAssistant
+  method: DELETE
+  path: /assistants/{assistant_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listVoiceConsents
+  method: GET
+  path: /audio/voice_consents
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: createVoiceConsent
+  method: POST
+  path: /audio/voice_consents
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: deleteVoiceConsent
+  method: DELETE
+  path: /audio/voice_consents/{consent_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: getVoiceConsent
+  method: GET
+  path: /audio/voice_consents/{consent_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: updateVoiceConsent
+  method: POST
+  path: /audio/voice_consents/{consent_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listChatCompletions
+  method: GET
+  path: /chat/completions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: deleteChatCompletion
+  method: DELETE
+  path: /chat/completions/{completion_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: getChatCompletion
+  method: GET
+  path: /chat/completions/{completion_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: updateChatCompletion
+  method: POST
+  path: /chat/completions/{completion_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: getChatCompletionMessages
+  method: GET
+  path: /chat/completions/{completion_id}/messages
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: CreateChatSessionMethod
+  method: POST
+  path: /chatkit/sessions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: CancelChatSessionMethod
+  method: POST
+  path: /chatkit/sessions/{session_id}/cancel
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: ListThreadsMethod
+  method: GET
+  path: /chatkit/threads
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: DeleteThreadMethod
+  method: DELETE
+  path: /chatkit/threads/{thread_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: GetThreadMethod
+  method: GET
+  path: /chatkit/threads/{thread_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: ListThreadItemsMethod
+  method: GET
+  path: /chatkit/threads/{thread_id}/items
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: ListContainers
+  method: GET
+  path: /containers
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: CreateContainer
+  method: POST
+  path: /containers
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: DeleteContainer
+  method: DELETE
+  path: /containers/{container_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: RetrieveContainer
+  method: GET
+  path: /containers/{container_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: ListContainerFiles
+  method: GET
+  path: /containers/{container_id}/files
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: CreateContainerFile
+  method: POST
+  path: /containers/{container_id}/files
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: DeleteContainerFile
+  method: DELETE
+  path: /containers/{container_id}/files/{file_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: RetrieveContainerFile
+  method: GET
+  path: /containers/{container_id}/files/{file_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: RetrieveContainerFileContent
+  method: GET
+  path: /containers/{container_id}/files/{file_id}/content
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: Createcontentprovenancecheck
+  method: POST
+  path: /content_provenance_checks
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listConversationItems
+  method: GET
+  path: /conversations/{conversation_id}/items
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: createConversationItems
+  method: POST
+  path: /conversations/{conversation_id}/items
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: deleteConversationItem
+  method: DELETE
+  path: /conversations/{conversation_id}/items/{item_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: getConversationItem
+  method: GET
+  path: /conversations/{conversation_id}/items/{item_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listEvals
+  method: GET
+  path: /evals
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: createEval
+  method: POST
+  path: /evals
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: deleteEval
+  method: DELETE
+  path: /evals/{eval_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: getEval
+  method: GET
+  path: /evals/{eval_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: getEvalRuns
+  method: GET
+  path: /evals/{eval_id}/runs
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: createEvalRun
+  method: POST
+  path: /evals/{eval_id}/runs
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: deleteEvalRun
+  method: DELETE
+  path: /evals/{eval_id}/runs/{run_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: getEvalRun
+  method: GET
+  path: /evals/{eval_id}/runs/{run_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: cancelEvalRun
+  method: POST
+  path: /evals/{eval_id}/runs/{run_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: getEvalRunOutputItems
+  method: GET
+  path: /evals/{eval_id}/runs/{run_id}/output_items
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: getEvalRunOutputItem
+  method: GET
+  path: /evals/{eval_id}/runs/{run_id}/output_items/{output_item_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: runGrader
+  method: POST
+  path: /fine_tuning/alpha/graders/run
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: validateGrader
+  method: POST
+  path: /fine_tuning/alpha/graders/validate
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listFineTuningCheckpointPermissions
+  method: GET
+  path: /fine_tuning/checkpoints/{fine_tuned_model_checkpoint}/permissions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: createFineTuningCheckpointPermission
+  method: POST
+  path: /fine_tuning/checkpoints/{fine_tuned_model_checkpoint}/permissions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: deleteFineTuningCheckpointPermission
+  method: DELETE
+  path: /fine_tuning/checkpoints/{fine_tuned_model_checkpoint}/permissions/{permission_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listFineTuningJobCheckpoints
+  method: GET
+  path: /fine_tuning/jobs/{fine_tuning_job_id}/checkpoints
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: pauseFineTuningJob
+  method: POST
+  path: /fine_tuning/jobs/{fine_tuning_job_id}/pause
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: resumeFineTuningJob
+  method: POST
+  path: /fine_tuning/jobs/{fine_tuning_job_id}/resume
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: create-live
+  method: POST
+  path: /live/sessions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: accept-live-session
+  method: POST
+  path: /live/sessions/{session_id}/accept
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: download-live-recording
+  method: GET
+  path: /live/sessions/{session_id}/content
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: fork-live-session
+  method: POST
+  path: /live/sessions/{session_id}/fork
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: hangup-live-session
+  method: POST
+  path: /live/sessions/{session_id}/hangup
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: refer-live-session
+  method: POST
+  path: /live/sessions/{session_id}/refer
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: reject-live-session
+  method: POST
+  path: /live/sessions/{session_id}/reject
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: admin-api-keys-list
+  method: GET
+  path: /organization/admin_api_keys
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: admin-api-keys-create
+  method: POST
+  path: /organization/admin_api_keys
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: admin-api-keys-delete
+  method: DELETE
+  path: /organization/admin_api_keys/{key_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: admin-api-keys-get
+  method: GET
+  path: /organization/admin_api_keys/{key_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: list-audit-logs
+  method: GET
+  path: /organization/audit_logs
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listOrganizationCertificates
+  method: GET
+  path: /organization/certificates
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: uploadCertificate
+  method: POST
+  path: /organization/certificates
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: activateOrganizationCertificates
+  method: POST
+  path: /organization/certificates/activate
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: deactivateOrganizationCertificates
+  method: POST
+  path: /organization/certificates/deactivate
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: deleteCertificate
+  method: DELETE
+  path: /organization/certificates/{certificate_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: getCertificate
+  method: GET
+  path: /organization/certificates/{certificate_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: modifyCertificate
+  method: POST
+  path: /organization/certificates/{certificate_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: usage-costs
+  method: GET
+  path: /organization/costs
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-organization-data-retention
+  method: GET
+  path: /organization/data_retention
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: update-organization-data-retention
+  method: POST
+  path: /organization/data_retention
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: list-groups
+  method: GET
+  path: /organization/groups
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: create-group
+  method: POST
+  path: /organization/groups
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: delete-group
+  method: DELETE
+  path: /organization/groups/{group_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-group
+  method: GET
+  path: /organization/groups/{group_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: update-group
+  method: POST
+  path: /organization/groups/{group_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: list-group-role-assignments
+  method: GET
+  path: /organization/groups/{group_id}/roles
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: assign-group-role
+  method: POST
+  path: /organization/groups/{group_id}/roles
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: unassign-group-role
+  method: DELETE
+  path: /organization/groups/{group_id}/roles/{role_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-group-role
+  method: GET
+  path: /organization/groups/{group_id}/roles/{role_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: list-group-users
+  method: GET
+  path: /organization/groups/{group_id}/users
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: add-group-user
+  method: POST
+  path: /organization/groups/{group_id}/users
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: remove-group-user
+  method: DELETE
+  path: /organization/groups/{group_id}/users/{user_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-group-user
+  method: GET
+  path: /organization/groups/{group_id}/users/{user_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: list-invites
+  method: GET
+  path: /organization/invites
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: inviteUser
+  method: POST
+  path: /organization/invites
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: delete-invite
+  method: DELETE
+  path: /organization/invites/{invite_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-invite
+  method: GET
+  path: /organization/invites/{invite_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: list-projects
+  method: GET
+  path: /organization/projects
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: create-project
+  method: POST
+  path: /organization/projects
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-project
+  method: GET
+  path: /organization/projects/{project_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: modify-project
+  method: POST
+  path: /organization/projects/{project_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: list-project-api-keys
+  method: GET
+  path: /organization/projects/{project_id}/api_keys
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: delete-project-api-key
+  method: DELETE
+  path: /organization/projects/{project_id}/api_keys/{api_key_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-project-api-key
+  method: GET
+  path: /organization/projects/{project_id}/api_keys/{api_key_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: archive-project
+  method: POST
+  path: /organization/projects/{project_id}/archive
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listProjectCertificates
+  method: GET
+  path: /organization/projects/{project_id}/certificates
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: activateProjectCertificates
+  method: POST
+  path: /organization/projects/{project_id}/certificates/activate
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: deactivateProjectCertificates
+  method: POST
+  path: /organization/projects/{project_id}/certificates/deactivate
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-project-data-retention
+  method: GET
+  path: /organization/projects/{project_id}/data_retention
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: update-project-data-retention
+  method: POST
+  path: /organization/projects/{project_id}/data_retention
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: list-project-groups
+  method: GET
+  path: /organization/projects/{project_id}/groups
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: add-project-group
+  method: POST
+  path: /organization/projects/{project_id}/groups
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: remove-project-group
+  method: DELETE
+  path: /organization/projects/{project_id}/groups/{group_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-project-group
+  method: GET
+  path: /organization/projects/{project_id}/groups/{group_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-project-hosted-tool-permissions
+  method: GET
+  path: /organization/projects/{project_id}/hosted_tool_permissions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: update-project-hosted-tool-permissions
+  method: POST
+  path: /organization/projects/{project_id}/hosted_tool_permissions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: delete-project-model-permissions
+  method: DELETE
+  path: /organization/projects/{project_id}/model_permissions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-project-model-permissions
+  method: GET
+  path: /organization/projects/{project_id}/model_permissions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: update-project-model-permissions
+  method: POST
+  path: /organization/projects/{project_id}/model_permissions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: list-project-rate-limits
+  method: GET
+  path: /organization/projects/{project_id}/rate_limits
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: update-project-rate-limits
+  method: POST
+  path: /organization/projects/{project_id}/rate_limits/{rate_limit_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: list-project-service-accounts
+  method: GET
+  path: /organization/projects/{project_id}/service_accounts
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: create-project-service-account
+  method: POST
+  path: /organization/projects/{project_id}/service_accounts
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: delete-project-service-account
+  method: DELETE
+  path: /organization/projects/{project_id}/service_accounts/{service_account_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-project-service-account
+  method: GET
+  path: /organization/projects/{project_id}/service_accounts/{service_account_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: update-project-service-account
+  method: POST
+  path: /organization/projects/{project_id}/service_accounts/{service_account_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: CreateanAPIkeyforaserviceaccount
+  method: POST
+  path: /organization/projects/{project_id}/service_accounts/{service_account_id}/api_keys
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: list-project-spend-alerts
+  method: GET
+  path: /organization/projects/{project_id}/spend_alerts
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: create-project-spend-alert
+  method: POST
+  path: /organization/projects/{project_id}/spend_alerts
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: delete-project-spend-alert
+  method: DELETE
+  path: /organization/projects/{project_id}/spend_alerts/{alert_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-project-spend-alert
+  method: GET
+  path: /organization/projects/{project_id}/spend_alerts/{alert_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: update-project-spend-alert
+  method: POST
+  path: /organization/projects/{project_id}/spend_alerts/{alert_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: Deleteprojectspendlimit
+  method: DELETE
+  path: /organization/projects/{project_id}/spend_limit
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: Getprojectspendlimit
+  method: GET
+  path: /organization/projects/{project_id}/spend_limit
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: Updateprojectspendlimit
+  method: POST
+  path: /organization/projects/{project_id}/spend_limit
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: list-project-users
+  method: GET
+  path: /organization/projects/{project_id}/users
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: create-project-user
+  method: POST
+  path: /organization/projects/{project_id}/users
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: delete-project-user
+  method: DELETE
+  path: /organization/projects/{project_id}/users/{user_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-project-user
+  method: GET
+  path: /organization/projects/{project_id}/users/{user_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: modify-project-user
+  method: POST
+  path: /organization/projects/{project_id}/users/{user_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: list-roles
+  method: GET
+  path: /organization/roles
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: create-role
+  method: POST
+  path: /organization/roles
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: delete-role
+  method: DELETE
+  path: /organization/roles/{role_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-role
+  method: GET
+  path: /organization/roles/{role_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: update-role
+  method: POST
+  path: /organization/roles/{role_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: list-organization-spend-alerts
+  method: GET
+  path: /organization/spend_alerts
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: create-organization-spend-alert
+  method: POST
+  path: /organization/spend_alerts
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: delete-organization-spend-alert
+  method: DELETE
+  path: /organization/spend_alerts/{alert_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-organization-spend-alert
+  method: GET
+  path: /organization/spend_alerts/{alert_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: update-organization-spend-alert
+  method: POST
+  path: /organization/spend_alerts/{alert_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: Deleteorganizationspendlimit
+  method: DELETE
+  path: /organization/spend_limit
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: Getorganizationspendlimit
+  method: GET
+  path: /organization/spend_limit
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: Updateorganizationspendlimit
+  method: POST
+  path: /organization/spend_limit
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: usage-audio-speeches
+  method: GET
+  path: /organization/usage/audio_speeches
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: usage-audio-transcriptions
+  method: GET
+  path: /organization/usage/audio_transcriptions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: usage-code-interpreter-sessions
+  method: GET
+  path: /organization/usage/code_interpreter_sessions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: usage-completions
+  method: GET
+  path: /organization/usage/completions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: usage-embeddings
+  method: GET
+  path: /organization/usage/embeddings
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: usage-file-search-calls
+  method: GET
+  path: /organization/usage/file_search_calls
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: usage-images
+  method: GET
+  path: /organization/usage/images
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: usage-moderations
+  method: GET
+  path: /organization/usage/moderations
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: usage-vector-stores
+  method: GET
+  path: /organization/usage/vector_stores
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: usage-web-search-calls
+  method: GET
+  path: /organization/usage/web_search_calls
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: list-users
+  method: GET
+  path: /organization/users
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: delete-user
+  method: DELETE
+  path: /organization/users/{user_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-user
+  method: GET
+  path: /organization/users/{user_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: modify-user
+  method: POST
+  path: /organization/users/{user_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: list-user-role-assignments
+  method: GET
+  path: /organization/users/{user_id}/roles
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: assign-user-role
+  method: POST
+  path: /organization/users/{user_id}/roles
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: unassign-user-role
+  method: DELETE
+  path: /organization/users/{user_id}/roles/{role_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-user-role
+  method: GET
+  path: /organization/users/{user_id}/roles/{role_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: list-project-group-role-assignments
+  method: GET
+  path: /projects/{project_id}/groups/{group_id}/roles
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: assign-project-group-role
+  method: POST
+  path: /projects/{project_id}/groups/{group_id}/roles
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: unassign-project-group-role
+  method: DELETE
+  path: /projects/{project_id}/groups/{group_id}/roles/{role_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-project-group-role
+  method: GET
+  path: /projects/{project_id}/groups/{group_id}/roles/{role_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: list-project-roles
+  method: GET
+  path: /projects/{project_id}/roles
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: create-project-role
+  method: POST
+  path: /projects/{project_id}/roles
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: delete-project-role
+  method: DELETE
+  path: /projects/{project_id}/roles/{role_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-project-role
+  method: GET
+  path: /projects/{project_id}/roles/{role_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: update-project-role
+  method: POST
+  path: /projects/{project_id}/roles/{role_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: list-project-user-role-assignments
+  method: GET
+  path: /projects/{project_id}/users/{user_id}/roles
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: assign-project-user-role
+  method: POST
+  path: /projects/{project_id}/users/{user_id}/roles
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: unassign-project-user-role
+  method: DELETE
+  path: /projects/{project_id}/users/{user_id}/roles/{role_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieve-project-user-role
+  method: GET
+  path: /projects/{project_id}/users/{user_id}/roles/{role_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: create-realtime-call
+  method: POST
+  path: /realtime/calls
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: accept-realtime-call
+  method: POST
+  path: /realtime/calls/{call_id}/accept
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: hangup-realtime-call
+  method: POST
+  path: /realtime/calls/{call_id}/hangup
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: refer-realtime-call
+  method: POST
+  path: /realtime/calls/{call_id}/refer
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: reject-realtime-call
+  method: POST
+  path: /realtime/calls/{call_id}/reject
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: create-realtime-client-secret
+  method: POST
+  path: /realtime/client_secrets
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: create-realtime-session
+  method: POST
+  path: /realtime/sessions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: create-realtime-transcription-session
+  method: POST
+  path: /realtime/transcription_sessions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: create-realtime-translation-client-secret
+  method: POST
+  path: /realtime/translations/client_secrets
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: beta_Compactconversation
+  method: POST
+  path: /responses/compact?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: beta_Getinputtokencounts
+  method: POST
+  path: /responses/input_tokens?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: beta_cancelResponse
+  method: POST
+  path: /responses/{response_id}/cancel?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: beta_listInputItems
+  method: GET
+  path: /responses/{response_id}/input_items?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: beta_deleteResponse
+  method: DELETE
+  path: /responses/{response_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: beta_getResponse
+  method: GET
+  path: /responses/{response_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: beta_createResponse
+  method: POST
+  path: /responses?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: Getprojectsafetyalert
+  method: GET
+  path: /safety/alerts/{id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: UpdateSkillDefaultVersion
+  method: POST
+  path: /skills/{skill_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: GetSkillContent
+  method: GET
+  path: /skills/{skill_id}/content
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: ListSkillVersions
+  method: GET
+  path: /skills/{skill_id}/versions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: CreateSkillVersion
+  method: POST
+  path: /skills/{skill_id}/versions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: DeleteSkillVersion
+  method: DELETE
+  path: /skills/{skill_id}/versions/{version}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: GetSkillVersion
+  method: GET
+  path: /skills/{skill_id}/versions/{version}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: GetSkillVersionContent
+  method: GET
+  path: /skills/{skill_id}/versions/{version}/content
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: createThreadAndRun
+  method: POST
+  path: /threads/runs
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: modifyThread
+  method: POST
+  path: /threads/{thread_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listRunSteps
+  method: GET
+  path: /threads/{thread_id}/runs/{run_id}/steps
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: getRunStep
+  method: GET
+  path: /threads/{thread_id}/runs/{run_id}/steps/{step_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: submitToolOuputsToRun
+  method: POST
+  path: /threads/{thread_id}/runs/{run_id}/submit_tool_outputs
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: createUpload
+  method: POST
+  path: /uploads
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: cancelUpload
+  method: POST
+  path: /uploads/{upload_id}/cancel
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: completeUpload
+  method: POST
+  path: /uploads/{upload_id}/complete
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: addUploadPart
+  method: POST
+  path: /uploads/{upload_id}/parts
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listVaultCredentials
+  method: GET
+  path: /vaults/{vault_id}/credentials
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: createVaultCredential
+  method: POST
+  path: /vaults/{vault_id}/credentials
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: deleteVaultCredential
+  method: DELETE
+  path: /vaults/{vault_id}/credentials/{credential_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieveVaultCredential
+  method: GET
+  path: /vaults/{vault_id}/credentials/{credential_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: rotateVaultCredential
+  method: POST
+  path: /vaults/{vault_id}/credentials/{credential_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: modifyVectorStore
+  method: POST
+  path: /vector_stores/{vector_store_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: createVectorStoreFileBatch
+  method: POST
+  path: /vector_stores/{vector_store_id}/file_batches
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: getVectorStoreFileBatch
+  method: GET
+  path: /vector_stores/{vector_store_id}/file_batches/{batch_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: cancelVectorStoreFileBatch
+  method: POST
+  path: /vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: listFilesInVectorStoreBatch
+  method: GET
+  path: /vector_stores/{vector_store_id}/file_batches/{batch_id}/files
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: updateVectorStoreFileAttributes
+  method: POST
+  path: /vector_stores/{vector_store_id}/files/{file_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: retrieveVectorStoreFileContent
+  method: GET
+  path: /vector_stores/{vector_store_id}/files/{file_id}/content
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: searchVectorStore
+  method: POST
+  path: /vector_stores/{vector_store_id}/search
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: CreateVideoCharacter
+  method: POST
+  path: /videos/characters
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: GetVideoCharacter
+  method: GET
+  path: /videos/characters/{character_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: CreateVideoRemix
+  method: POST
+  path: /videos/{video_id}/remix
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.

@@ -1,0 +1,1022 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-4.0
+overlay: 1.0.0
+info:
+  title: OpenAI interface tiers
+  version: 1.0.0
+  description: Applies the API Commons tier grading to the upstream OpenAI OpenAPI without copying it.
+    Written against commit 38170fdddbb6a1813eae6c6587ee17cf2987185b.
+actions:
+- target: $.paths['/agents'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/environments/templates'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/environments/templates'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/environments/templates/{environment_template_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/environments/templates/{environment_template_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/environments/templates/{environment_template_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/environments/{environment_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/environments/{environment_id}/files'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/environments/{environment_id}/files'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions/{session_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions/{session_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions/{session_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions/{session_id}/artifacts'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions/{session_id}/artifacts/{artifact_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions/{session_id}/artifacts/{artifact_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions/{session_id}/artifacts/{artifact_id}/content'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions/{session_id}/events'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions/{session_id}/events'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions/{session_id}/items'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions/{session_id}/subagents'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions/{session_id}/subagents/{subagent_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions/{session_id}/subagents/{subagent_id}/items'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions/{session_id}/subagents/{subagent_id}/turns'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions/{session_id}/subagents/{subagent_id}/turns/{turn_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions/{session_id}/subagents/{subagent_id}/turns/{turn_id}/items'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions/{session_id}/turns'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/sessions/{session_id}/turns/{turn_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/{agent_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/{agent_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/agents/{agent_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/assistants'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/assistants'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/assistants/{assistant_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/assistants/{assistant_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/assistants/{assistant_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/audio/speech'].post
+  update:
+    x-tier: extended
+- target: $.paths['/audio/transcriptions'].post
+  update:
+    x-tier: extended
+- target: $.paths['/audio/translations'].post
+  update:
+    x-tier: extended
+- target: $.paths['/audio/voice_consents'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/audio/voice_consents'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/audio/voice_consents/{consent_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/audio/voice_consents/{consent_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/audio/voice_consents/{consent_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/audio/voices'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/batches'].get
+  update:
+    x-tier: extended
+- target: $.paths['/batches'].post
+  update:
+    x-tier: extended
+- target: $.paths['/batches/{batch_id}'].get
+  update:
+    x-tier: extended
+- target: $.paths['/batches/{batch_id}/cancel'].post
+  update:
+    x-tier: extended
+- target: $.paths['/chat/completions'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/chat/completions'].post
+  update:
+    x-tier: core
+- target: $.paths['/chat/completions/{completion_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/chat/completions/{completion_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/chat/completions/{completion_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/chat/completions/{completion_id}/messages'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/chatkit/sessions'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/chatkit/sessions/{session_id}/cancel'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/chatkit/threads'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/chatkit/threads/{thread_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/chatkit/threads/{thread_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/chatkit/threads/{thread_id}/items'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/completions'].post
+  update:
+    x-tier: extended
+- target: $.paths['/containers'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/containers'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/containers/{container_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/containers/{container_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/containers/{container_id}/files'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/containers/{container_id}/files'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/containers/{container_id}/files/{file_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/containers/{container_id}/files/{file_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/containers/{container_id}/files/{file_id}/content'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/content_provenance_checks'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/conversations'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/conversations/{conversation_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/conversations/{conversation_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/conversations/{conversation_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/conversations/{conversation_id}/items'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/conversations/{conversation_id}/items'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/conversations/{conversation_id}/items/{item_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/conversations/{conversation_id}/items/{item_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/embeddings'].post
+  update:
+    x-tier: extended
+- target: $.paths['/evals'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/evals'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/evals/{eval_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/evals/{eval_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/evals/{eval_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/evals/{eval_id}/runs'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/evals/{eval_id}/runs'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/evals/{eval_id}/runs/{run_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/evals/{eval_id}/runs/{run_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/evals/{eval_id}/runs/{run_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/evals/{eval_id}/runs/{run_id}/output_items'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/evals/{eval_id}/runs/{run_id}/output_items/{output_item_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/files'].get
+  update:
+    x-tier: extended
+- target: $.paths['/files'].post
+  update:
+    x-tier: extended
+- target: $.paths['/files/{file_id}'].delete
+  update:
+    x-tier: extended
+- target: $.paths['/files/{file_id}'].get
+  update:
+    x-tier: extended
+- target: $.paths['/files/{file_id}/content'].get
+  update:
+    x-tier: extended
+- target: $.paths['/fine_tuning/alpha/graders/run'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/fine_tuning/alpha/graders/validate'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/fine_tuning/checkpoints/{fine_tuned_model_checkpoint}/permissions'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/fine_tuning/checkpoints/{fine_tuned_model_checkpoint}/permissions'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/fine_tuning/checkpoints/{fine_tuned_model_checkpoint}/permissions/{permission_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/fine_tuning/jobs'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/fine_tuning/jobs'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/fine_tuning/jobs/{fine_tuning_job_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/fine_tuning/jobs/{fine_tuning_job_id}/cancel'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/fine_tuning/jobs/{fine_tuning_job_id}/events'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/fine_tuning/jobs/{fine_tuning_job_id}/pause'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/fine_tuning/jobs/{fine_tuning_job_id}/resume'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/images/edits'].post
+  update:
+    x-tier: extended
+- target: $.paths['/images/generations'].post
+  update:
+    x-tier: extended
+- target: $.paths['/images/variations'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/live/sessions'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/live/sessions/{session_id}/accept'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/live/sessions/{session_id}/content'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/live/sessions/{session_id}/fork'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/live/sessions/{session_id}/hangup'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/live/sessions/{session_id}/refer'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/live/sessions/{session_id}/reject'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/models'].get
+  update:
+    x-tier: core
+- target: $.paths['/models/{model}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/models/{model}'].get
+  update:
+    x-tier: extended
+- target: $.paths['/moderations'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/admin_api_keys'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/admin_api_keys'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/admin_api_keys/{key_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/admin_api_keys/{key_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/audit_logs'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/certificates'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/certificates'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/certificates/activate'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/certificates/deactivate'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/certificates/{certificate_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/certificates/{certificate_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/certificates/{certificate_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/costs'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/data_retention'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/data_retention'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/groups'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/groups'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/groups/{group_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/groups/{group_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/groups/{group_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/groups/{group_id}/roles'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/groups/{group_id}/roles'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/groups/{group_id}/roles/{role_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/groups/{group_id}/roles/{role_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/groups/{group_id}/users'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/groups/{group_id}/users'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/groups/{group_id}/users/{user_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/groups/{group_id}/users/{user_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/invites'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/invites'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/invites/{invite_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/invites/{invite_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/api_keys'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/api_keys/{api_key_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/api_keys/{api_key_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/archive'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/certificates'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/certificates/activate'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/certificates/deactivate'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/data_retention'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/data_retention'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/groups'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/groups'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/groups/{group_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/groups/{group_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/hosted_tool_permissions'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/hosted_tool_permissions'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/model_permissions'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/model_permissions'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/model_permissions'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/rate_limits'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/rate_limits/{rate_limit_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/service_accounts'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/service_accounts'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/service_accounts/{service_account_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/service_accounts/{service_account_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/service_accounts/{service_account_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/service_accounts/{service_account_id}/api_keys'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/spend_alerts'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/spend_alerts'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/spend_alerts/{alert_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/spend_alerts/{alert_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/spend_alerts/{alert_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/spend_limit'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/spend_limit'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/spend_limit'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/users'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/users'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/users/{user_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/users/{user_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/projects/{project_id}/users/{user_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/roles'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/roles'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/roles/{role_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/roles/{role_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/roles/{role_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/spend_alerts'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/spend_alerts'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/spend_alerts/{alert_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/spend_alerts/{alert_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/spend_alerts/{alert_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/spend_limit'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/spend_limit'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/spend_limit'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/usage/audio_speeches'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/usage/audio_transcriptions'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/usage/code_interpreter_sessions'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/usage/completions'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/usage/embeddings'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/usage/file_search_calls'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/usage/images'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/usage/moderations'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/usage/vector_stores'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/usage/web_search_calls'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/users'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/users/{user_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/users/{user_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/users/{user_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/users/{user_id}/roles'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/users/{user_id}/roles'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/users/{user_id}/roles/{role_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/organization/users/{user_id}/roles/{role_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/projects/{project_id}/groups/{group_id}/roles'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/projects/{project_id}/groups/{group_id}/roles'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/projects/{project_id}/groups/{group_id}/roles/{role_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/projects/{project_id}/groups/{group_id}/roles/{role_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/projects/{project_id}/roles'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/projects/{project_id}/roles'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/projects/{project_id}/roles/{role_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/projects/{project_id}/roles/{role_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/projects/{project_id}/roles/{role_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/projects/{project_id}/users/{user_id}/roles'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/projects/{project_id}/users/{user_id}/roles'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/projects/{project_id}/users/{user_id}/roles/{role_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/projects/{project_id}/users/{user_id}/roles/{role_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/realtime/calls'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/realtime/calls/{call_id}/accept'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/realtime/calls/{call_id}/hangup'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/realtime/calls/{call_id}/refer'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/realtime/calls/{call_id}/reject'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/realtime/client_secrets'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/realtime/sessions'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/realtime/transcription_sessions'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/realtime/translations/client_secrets'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/responses'].post
+  update:
+    x-tier: extended
+- target: $.paths['/responses/compact'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/responses/compact?beta=true'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/responses/input_tokens'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/responses/input_tokens?beta=true'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/responses/{response_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/responses/{response_id}'].get
+  update:
+    x-tier: extended
+- target: $.paths['/responses/{response_id}/cancel'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/responses/{response_id}/cancel?beta=true'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/responses/{response_id}/input_items'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/responses/{response_id}/input_items?beta=true'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/responses/{response_id}?beta=true'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/responses/{response_id}?beta=true'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/responses?beta=true'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/safety/alerts/{id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/skills'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/skills'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/skills/{skill_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/skills/{skill_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/skills/{skill_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/skills/{skill_id}/content'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/skills/{skill_id}/versions'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/skills/{skill_id}/versions'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/skills/{skill_id}/versions/{version}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/skills/{skill_id}/versions/{version}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/skills/{skill_id}/versions/{version}/content'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/threads'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/threads/runs'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/threads/{thread_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/threads/{thread_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/threads/{thread_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/threads/{thread_id}/messages'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/threads/{thread_id}/messages'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/threads/{thread_id}/messages/{message_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/threads/{thread_id}/messages/{message_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/threads/{thread_id}/messages/{message_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/threads/{thread_id}/runs'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/threads/{thread_id}/runs'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/threads/{thread_id}/runs/{run_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/threads/{thread_id}/runs/{run_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/threads/{thread_id}/runs/{run_id}/cancel'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/threads/{thread_id}/runs/{run_id}/steps'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/threads/{thread_id}/runs/{run_id}/steps/{step_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/threads/{thread_id}/runs/{run_id}/submit_tool_outputs'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/uploads'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/uploads/{upload_id}/cancel'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/uploads/{upload_id}/complete'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/uploads/{upload_id}/parts'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/vaults'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/vaults'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/vaults/{vault_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/vaults/{vault_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/vaults/{vault_id}/credentials'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/vaults/{vault_id}/credentials'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/vaults/{vault_id}/credentials/{credential_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/vaults/{vault_id}/credentials/{credential_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/vaults/{vault_id}/credentials/{credential_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/vector_stores'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/vector_stores'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/vector_stores/{vector_store_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/vector_stores/{vector_store_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/vector_stores/{vector_store_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/vector_stores/{vector_store_id}/file_batches'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/vector_stores/{vector_store_id}/file_batches/{batch_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/vector_stores/{vector_store_id}/file_batches/{batch_id}/cancel'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/vector_stores/{vector_store_id}/file_batches/{batch_id}/files'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/vector_stores/{vector_store_id}/files'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/vector_stores/{vector_store_id}/files'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/vector_stores/{vector_store_id}/files/{file_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/vector_stores/{vector_store_id}/files/{file_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/vector_stores/{vector_store_id}/files/{file_id}'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/vector_stores/{vector_store_id}/files/{file_id}/content'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/vector_stores/{vector_store_id}/search'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/videos'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/videos'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/videos/characters'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/videos/characters/{character_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/videos/edits'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/videos/extensions'].post
+  update:
+    x-tier: vendor
+- target: $.paths['/videos/{video_id}'].delete
+  update:
+    x-tier: vendor
+- target: $.paths['/videos/{video_id}'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/videos/{video_id}/content'].get
+  update:
+    x-tier: vendor
+- target: $.paths['/videos/{video_id}/remix'].post
+  update:
+    x-tier: vendor

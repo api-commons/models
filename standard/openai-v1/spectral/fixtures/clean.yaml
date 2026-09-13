@@ -1,0 +1,85 @@
+# A minimal spec that reaches the core tier of the OpenAI interface.
+openapi: 3.1.0
+info:
+  title: Example Inference API
+  version: 1.0.0
+servers:
+  - url: https://api.example.com/v1
+paths:
+  /v1/chat/completions:
+    post:
+      operationId: createChatCompletion
+      summary: Create a chat completion.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [model, messages]
+              properties:
+                model:
+                  type: string
+                messages:
+                  type: array
+                  items:
+                    type: object
+                    required: [role, content]
+                    properties:
+                      role:
+                        type: string
+                        enum: [system, user, assistant]
+                      content:
+                        type: string
+                stream:
+                  type: boolean
+      responses:
+        '200':
+          description: A chat completion.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [id, choices]
+                properties:
+                  id:
+                    type: string
+                  choices:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        index:
+                          type: integer
+                        message:
+                          type: object
+                          properties:
+                            role:
+                              type: string
+                            content:
+                              type: string
+  /v1/models:
+    get:
+      operationId: listModels
+      summary: List the models this provider serves.
+      responses:
+        '200':
+          description: The model list.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [data]
+                properties:
+                  object:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      required: [id]
+                      properties:
+                        id:
+                          type: string
+                        owned_by:
+                          type: string

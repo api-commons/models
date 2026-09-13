@@ -1,0 +1,71 @@
+{
+  "type": "object",
+  "properties": {
+    "object": {
+      "type": "string",
+      "enum": [
+        "list"
+      ],
+      "x-stainless-const": true
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "title": "Model",
+        "description": "Describes an OpenAI model offering that can be used with the API.",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The model identifier, which can be referenced in the API endpoints."
+          },
+          "created": {
+            "type": "integer",
+            "format": "unixtime",
+            "description": "The Unix timestamp (in seconds) when the model was created."
+          },
+          "object": {
+            "type": "string",
+            "description": "The object type, which is always \"model\".",
+            "enum": [
+              "model"
+            ],
+            "x-stainless-const": true
+          },
+          "owned_by": {
+            "type": "string",
+            "description": "The organization that owns the model."
+          },
+          "shutdown_date": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The date when the model will shut down, or null if not announced."
+          }
+        },
+        "required": [
+          "id",
+          "object",
+          "created",
+          "owned_by"
+        ],
+        "x-oaiMeta": {
+          "name": "The model object",
+          "example": "{\n  \"id\": \"gpt-6-astra\",\n  \"object\": \"model\",\n  \"created\": 1686935002,\n  \"owned_by\": \"openai\",\n  \"shutdown_date\": \"2026-10-23\"\n}\n"
+        }
+      }
+    }
+  },
+  "required": [
+    "object",
+    "data"
+  ],
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-commons/models/main/standard/openai-v1/schema/listModels-response.json",
+  "title": "listModels response"
+}

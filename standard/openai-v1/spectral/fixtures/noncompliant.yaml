@@ -1,0 +1,62 @@
+# Declares the core paths and gets them wrong. Every shape rule must fire here.
+openapi: 3.1.0
+info:
+  title: Nearly Compatible API
+  version: 1.0.0
+paths:
+  # No requestBody at all.
+  /v1/chat/completions:
+    post:
+      operationId: chat
+      responses:
+        '200':
+          description: Something.
+  # A request body that is a different API wearing the same path, and a response
+  # a client written against the OpenAI interface cannot read.
+  /api/v1/chat/completions:
+    post:
+      operationId: chatAlt
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [prompt]
+              properties:
+                prompt:
+                  type: string
+      responses:
+        '200':
+          description: A completion.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [output]
+                properties:
+                  output:
+                    type: string
+  # A model listing that does not expose `data`.
+  /v1/models:
+    get:
+      operationId: listModels
+      responses:
+        '200':
+          description: Models.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  models:
+                    type: array
+                    items:
+                      type: string
+  # Vendor tier: under 5% of the cohort declares anything like this.
+  /v1/assistants:
+    get:
+      operationId: listAssistants
+      responses:
+        '200':
+          description: Assistants.
