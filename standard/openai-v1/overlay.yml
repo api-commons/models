@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: CC-BY-NC-SA-4.0
 overlay: 1.0.0
 info:
-  title: OpenAI interface tiers
+  title: The OpenAI Interface tiers
   version: 1.0.0
   description: Applies the API Commons tier grading to the upstream OpenAI OpenAPI without copying it.
     Written against commit 38170fdddbb6a1813eae6c6587ee17cf2987185b.

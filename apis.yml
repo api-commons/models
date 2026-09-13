@@ -45,13 +45,45 @@ apis:
   - type: SpectralRules
     url: https://raw.githubusercontent.com/api-commons/models/main/standard/openai-v1/spectral/openai-profile.yaml
   - type: Adopters
-    url: https://raw.githubusercontent.com/api-commons/models/main/adopters/adopters.yml
+    url: https://raw.githubusercontent.com/api-commons/models/main/adopters/openai-v1.yml
   - type: GitHubRepository
     url: https://github.com/api-commons/models
   - type: Documentation
     url: https://apicommons.org/standards/models/
   - type: License
     url: https://github.com/api-commons/models/blob/main/LICENSE
+  contact:
+  - FN: API Evangelist
+    email: info@apievangelist.com
+- aid: standard-openai:anthropic-messages-v1
+  name: The Anthropic Messages Dialect
+  description: >-
+    The Messages API as a second dialect of the model layer. Profiled against a cohort
+    restricted to providers declaring an operation unique to Anthropic, because 29 of its
+    operations share a path shape with the OpenAI interface.
+  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  humanURL: https://apicommons.org/standards/models/
+  baseURL: https://api.anthropic.com
+  tags:
+  - API
+  - Models
+  - LLM
+  - Inference
+  properties:
+  - type: OpenAPI
+    url: https://raw.githubusercontent.com/api-commons/models/main/standard/anthropic-messages-v1/openapi.yml
+  - type: Overlay
+    url: https://raw.githubusercontent.com/api-commons/models/main/standard/anthropic-messages-v1/overlay.yml
+  - type: Arazzo
+    url: https://raw.githubusercontent.com/api-commons/models/main/standard/anthropic-messages-v1/arazzo/core-conformance.yml
+  - type: MCP
+    url: https://raw.githubusercontent.com/api-commons/models/main/standard/anthropic-messages-v1/mcp/tools.json
+  - type: SpectralRules
+    url: https://raw.githubusercontent.com/api-commons/models/main/standard/anthropic-messages-v1/spectral/anthropic-profile.yaml
+  - type: Adopters
+    url: https://raw.githubusercontent.com/api-commons/models/main/adopters/anthropic-messages-v1.yml
+  - type: GitHubRepository
+    url: https://github.com/api-commons/models
   contact:
   - FN: API Evangelist
     email: info@apievangelist.com

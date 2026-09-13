@@ -13,16 +13,17 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
-const SPECTRAL = resolve(HERE, "../standard/openai-v1/spectral");
-const RULESET = resolve(SPECTRAL, "openai-profile.yaml");
-const FIXTURES = resolve(SPECTRAL, "fixtures");
+
+// Every profile in the repo, so adding one without fixtures fails the build.
+const PROFILES = [
+  { standard: "openai-v1", ruleset: "openai-profile.yaml" },
+  { standard: "anthropic-messages-v1", ruleset: "anthropic-profile.yaml" },
+];
 
 const FAILING = ["noncompliant.yaml", "missing-core.yaml"];
 const CLEAN = ["clean.yaml", "clean-composed.yaml"];
 
-const declared = [
-  ...readFileSync(RULESET, "utf8").matchAll(/^ {2}([a-z][a-z0-9-]*):$/gm),
-].map((m) => m[1]);
+let SPECTRAL, RULESET, FIXTURES, declared;
 
 function lint(fixture) {
   const file = resolve(FIXTURES, fixture);
@@ -44,7 +45,17 @@ function lint(fixture) {
   }
 }
 
-console.log(`ruleset: openai-profile.yaml — ${declared.length} rules declared\n`);
+let anyFailed = false;
+
+for (const profile of PROFILES) {
+SPECTRAL = resolve(HERE, `../standard/${profile.standard}/spectral`);
+RULESET = resolve(SPECTRAL, profile.ruleset);
+FIXTURES = resolve(SPECTRAL, "fixtures");
+declared = [
+  ...readFileSync(RULESET, "utf8").matchAll(/^ {2}([a-z][a-z0-9-]*):$/gm),
+].map((m) => m[1]);
+
+console.log(`\n=== ${profile.standard} — ${profile.ruleset}, ${declared.length} rules ===\n`);
 
 const fired = new Set();
 for (const fixture of FAILING) {
@@ -89,4 +100,7 @@ if (cleanResults.length) {
   console.log(`PASS  both clean fixtures are silent`);
 }
 
-process.exit(failed ? 1 : 0);
+if (failed) anyFailed = true;
+}
+
+process.exit(anyFailed ? 1 : 0);

@@ -1,0 +1,57 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-4.0
+arazzo: 1.0.1
+info:
+  title: Anthropic Messages core conformance
+  version: 1.0.0
+  summary: Discover a model, then use it. The smallest flow that proves core-tier support.
+  description: Run this against a provider that claims compatibility. Step one reads the model list and
+    takes the first identifier it offers, so the flow never hardcodes a model name that only one provider
+    serves. Step two sends the smallest possible request with it. A provider that completes both steps
+    supports the interoperable core of this interface; a provider that cannot has no basis for the claim.
+sourceDescriptions:
+- name: profile
+  url: ./openapi.yml
+  type: openapi
+workflows:
+- workflowId: core-conformance
+  summary: List models, then send the smallest request with the first one.
+  description: 'Both core operations in the order a real client uses them: GET /v1/models (72.4% of the
+    cohort) then POST /v1/messages (69.0%).'
+  inputs:
+    type: object
+    properties:
+      prompt:
+        type: string
+        default: 'Reply with the word: ok'
+  steps:
+  - stepId: models_list
+    description: GET /v1/models — declared by 72.4% of the cohort.
+    operationId: $sourceDescriptions.profile.models_list
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.data[0].id
+      type: jsonpath
+    outputs:
+      modelId: $response.body#/data/0/id
+  - stepId: messages_post
+    description: POST /v1/messages — declared by 69.0% of the cohort.
+    operationId: $sourceDescriptions.profile.messages_post
+    requestBody:
+      contentType: application/json
+      payload:
+        model: $steps.models_list.outputs.modelId
+        max_tokens: 16
+        messages:
+        - role: user
+          content: $inputs.prompt
+    successCriteria:
+    - condition: $statusCode == 200
+    - context: $response.body
+      condition: $.content[0].text
+      type: jsonpath
+    outputs:
+      reply: $response.body#/content/0/text
+  outputs:
+    model: $steps.models_list.outputs.modelId
+    reply: $steps.messages_post.outputs.reply

@@ -1,0 +1,2704 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-4.0
+profile: anthropic-messages-v1
+title: The Anthropic Messages Dialect
+originator: Anthropic
+generated: '2026-09-13'
+generated_by: scripts/build-profile.py
+upstream:
+  repository: https://github.com/anthropics/anthropic-sdk-python
+  commit: eb21a4352015686c30f5759e8c2f02d70f5371e2
+  license: MIT
+  openapi: 3.1.0
+  info_version: null
+  note: Read from scripts/mock-spec.json.gz, which Anthropic bundles in its own SDK repository. The spec
+    declares no info.version.
+  paths: 165
+  operations: 244
+method:
+  summary: 'Tiers are measured against what adopters publish, not asserted. Each METHOD and path is graded
+    by the share of the publishing cohort that declares it. Grading by path alone credits every method
+    on a path equally, which is wrong: GET and POST on /chat/completions are not implemented at the same
+    rate.'
+  cohort: 29
+  claimants: 34
+  cohort_definition: '34 providers in the API Evangelist catalog state Anthropic compatibility. The cohort
+    here is the 29 providers whose published OpenAPI declares at least one operation UNIQUE to the Anthropic
+    API. That restriction matters: 29 of Anthropic''s operations share a path shape with the OpenAI interface,
+    and measuring against everyone who publishes a spec put GET /models at 86.3% — a figure that was measuring
+    OpenAI adoption, not this one.'
+  ambiguous_operations:
+  - DELETE /files/{x}
+  - DELETE /skills/{x}
+  - DELETE /skills/{x}/versions/{x}
+  - DELETE /vaults/{x}
+  - DELETE /vaults/{x}/credentials/{x}
+  - GET /agents
+  - GET /agents/{x}
+  - GET /files
+  - GET /files/{x}
+  - GET /files/{x}/content
+  - GET /models
+  - GET /models/{x}
+  - GET /skills
+  - GET /skills/{x}
+  - GET /skills/{x}/versions
+  - GET /skills/{x}/versions/{x}
+  - GET /skills/{x}/versions/{x}/content
+  - GET /vaults
+  - GET /vaults/{x}
+  - GET /vaults/{x}/credentials
+  - GET /vaults/{x}/credentials/{x}
+  - POST /agents
+  - POST /agents/{x}
+  - POST /files
+  - POST /skills
+  - POST /skills/{x}/versions
+  - POST /vaults
+  - POST /vaults/{x}/credentials
+  - POST /vaults/{x}/credentials/{x}
+  thresholds:
+    core: '>= 50.0% of the cohort'
+    extended: '>= 5.0% and < 50.0%'
+    vendor: < 5.0%
+  tiers:
+    core: Implement these or a compatibility claim is false.
+    extended: Materially emulated, and where implementations diverge.
+    vendor: Effectively Anthropic-only in practice.
+counts:
+  core: 2
+  extended: 11
+  vendor: 231
+operations:
+- operationId: models_list
+  method: GET
+  path: /v1/models
+  tier: core
+  adopters_declaring: 21
+  percent_of_cohort: 72.4
+  evidence: 21 of 29 adopters that publish their own OpenAPI declare this operation (72.4%).
+  ambiguous: true
+  ambiguous_note: This operation has the same shape in another profile in this domain, so a declaration
+    cannot be attributed to one interface by path alone. The count is reported, the attribution is not.
+- operationId: messages_post
+  method: POST
+  path: /v1/messages
+  tier: core
+  adopters_declaring: 20
+  percent_of_cohort: 69.0
+  evidence: 20 of 29 adopters that publish their own OpenAPI declare this operation (69.0%).
+- operationId: messages_count_tokens_post
+  method: POST
+  path: /v1/messages/count_tokens
+  tier: extended
+  adopters_declaring: 4
+  percent_of_cohort: 13.8
+  evidence: 4 of 29 adopters that publish their own OpenAPI declare this operation (13.8%).
+- operationId: models_get
+  method: GET
+  path: /v1/models/{model_id}
+  tier: extended
+  adopters_declaring: 4
+  percent_of_cohort: 13.8
+  evidence: 4 of 29 adopters that publish their own OpenAPI declare this operation (13.8%).
+  ambiguous: true
+  ambiguous_note: This operation has the same shape in another profile in this domain, so a declaration
+    cannot be attributed to one interface by path alone. The count is reported, the attribution is not.
+- operationId: list_files_v1_files_get
+  method: GET
+  path: /v1/files
+  tier: extended
+  adopters_declaring: 3
+  percent_of_cohort: 10.3
+  evidence: 3 of 29 adopters that publish their own OpenAPI declare this operation (10.3%).
+  ambiguous: true
+  ambiguous_note: This operation has the same shape in another profile in this domain, so a declaration
+    cannot be attributed to one interface by path alone. The count is reported, the attribution is not.
+- operationId: delete_file_v1_files__file_id__delete
+  method: DELETE
+  path: /v1/files/{file_id}
+  tier: extended
+  adopters_declaring: 3
+  percent_of_cohort: 10.3
+  evidence: 3 of 29 adopters that publish their own OpenAPI declare this operation (10.3%).
+  ambiguous: true
+  ambiguous_note: This operation has the same shape in another profile in this domain, so a declaration
+    cannot be attributed to one interface by path alone. The count is reported, the attribution is not.
+- operationId: get_file_metadata_v1_files__file_id__get
+  method: GET
+  path: /v1/files/{file_id}
+  tier: extended
+  adopters_declaring: 3
+  percent_of_cohort: 10.3
+  evidence: 3 of 29 adopters that publish their own OpenAPI declare this operation (10.3%).
+  ambiguous: true
+  ambiguous_note: This operation has the same shape in another profile in this domain, so a declaration
+    cannot be attributed to one interface by path alone. The count is reported, the attribution is not.
+- operationId: download_file_v1_files__file_id__content_get
+  method: GET
+  path: /v1/files/{file_id}/content
+  tier: extended
+  adopters_declaring: 3
+  percent_of_cohort: 10.3
+  evidence: 3 of 29 adopters that publish their own OpenAPI declare this operation (10.3%).
+  ambiguous: true
+  ambiguous_note: This operation has the same shape in another profile in this domain, so a declaration
+    cannot be attributed to one interface by path alone. The count is reported, the attribution is not.
+- operationId: complete_post
+  method: POST
+  path: /v1/complete
+  tier: extended
+  adopters_declaring: 2
+  percent_of_cohort: 6.9
+  evidence: 2 of 29 adopters that publish their own OpenAPI declare this operation (6.9%).
+- operationId: upload_file_v1_files_post
+  method: POST
+  path: /v1/files
+  tier: extended
+  adopters_declaring: 2
+  percent_of_cohort: 6.9
+  evidence: 2 of 29 adopters that publish their own OpenAPI declare this operation (6.9%).
+  ambiguous: true
+  ambiguous_note: This operation has the same shape in another profile in this domain, so a declaration
+    cannot be attributed to one interface by path alone. The count is reported, the attribution is not.
+- operationId: list_skills_v1_skills_get
+  method: GET
+  path: /v1/skills
+  tier: extended
+  adopters_declaring: 2
+  percent_of_cohort: 6.9
+  evidence: 2 of 29 adopters that publish their own OpenAPI declare this operation (6.9%).
+  ambiguous: true
+  ambiguous_note: This operation has the same shape in another profile in this domain, so a declaration
+    cannot be attributed to one interface by path alone. The count is reported, the attribution is not.
+- operationId: create_skill_v1_skills_post
+  method: POST
+  path: /v1/skills
+  tier: extended
+  adopters_declaring: 2
+  percent_of_cohort: 6.9
+  evidence: 2 of 29 adopters that publish their own OpenAPI declare this operation (6.9%).
+  ambiguous: true
+  ambiguous_note: This operation has the same shape in another profile in this domain, so a declaration
+    cannot be attributed to one interface by path alone. The count is reported, the attribution is not.
+- operationId: delete_skill_v1_skills__skill_id__delete
+  method: DELETE
+  path: /v1/skills/{skill_id}
+  tier: extended
+  adopters_declaring: 2
+  percent_of_cohort: 6.9
+  evidence: 2 of 29 adopters that publish their own OpenAPI declare this operation (6.9%).
+  ambiguous: true
+  ambiguous_note: This operation has the same shape in another profile in this domain, so a declaration
+    cannot be attributed to one interface by path alone. The count is reported, the attribution is not.
+- operationId: message_batches_list
+  method: GET
+  path: /v1/messages/batches
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 3.4
+  evidence: 1 of 29 adopters that publish their own OpenAPI declare this operation (3.4%).
+- operationId: message_batches_post
+  method: POST
+  path: /v1/messages/batches
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 3.4
+  evidence: 1 of 29 adopters that publish their own OpenAPI declare this operation (3.4%).
+- operationId: message_batches_retrieve
+  method: GET
+  path: /v1/messages/batches/{message_batch_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 3.4
+  evidence: 1 of 29 adopters that publish their own OpenAPI declare this operation (3.4%).
+- operationId: get_skill_v1_skills__skill_id__get
+  method: GET
+  path: /v1/skills/{skill_id}
+  tier: vendor
+  adopters_declaring: 1
+  percent_of_cohort: 3.4
+  evidence: 1 of 29 adopters that publish their own OpenAPI declare this operation (3.4%).
+  ambiguous: true
+  ambiguous_note: This operation has the same shape in another profile in this domain, so a declaration
+    cannot be attributed to one interface by path alone. The count is reported, the attribution is not.
+- operationId: BetaArchiveAgent
+  method: POST
+  path: /v1/agents/{agent_id}/archive?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaListAgentVersions
+  method: GET
+  path: /v1/agents/{agent_id}/versions?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaGetAgent
+  method: GET
+  path: /v1/agents/{agent_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaUpdateAgent
+  method: POST
+  path: /v1/agents/{agent_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaListAgents
+  method: GET
+  path: /v1/agents?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaCreateAgent
+  method: POST
+  path: /v1/agents?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaGetDeploymentRun
+  method: GET
+  path: /v1/deployment_runs/{deployment_run_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaListDeploymentRuns
+  method: GET
+  path: /v1/deployment_runs?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaArchiveDeployment
+  method: POST
+  path: /v1/deployments/{deployment_id}/archive?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaPauseDeployment
+  method: POST
+  path: /v1/deployments/{deployment_id}/pause?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaRunDeploymentNow
+  method: POST
+  path: /v1/deployments/{deployment_id}/run?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaUnpauseDeployment
+  method: POST
+  path: /v1/deployments/{deployment_id}/unpause?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaGetDeployment
+  method: GET
+  path: /v1/deployments/{deployment_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaUpdateDeployment
+  method: POST
+  path: /v1/deployments/{deployment_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaListDeployments
+  method: GET
+  path: /v1/deployments?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaCreateDeployment
+  method: POST
+  path: /v1/deployments?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaArchiveDream
+  method: POST
+  path: /v1/dreams/{dream_id}/archive?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaCancelDream
+  method: POST
+  path: /v1/dreams/{dream_id}/cancel?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaGetDream
+  method: GET
+  path: /v1/dreams/{dream_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaListDreams
+  method: GET
+  path: /v1/dreams?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaCreateDream
+  method: POST
+  path: /v1/dreams?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_archive_environment_v1_environments__environment_id__archive_post
+  method: POST
+  path: /v1/environments/{environment_id}/archive?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_poll_work_v1_environments__environment_id__work_poll_get
+  method: GET
+  path: /v1/environments/{environment_id}/work/poll?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_environment_stats_v1_environments__environment_id__work_stats_get
+  method: GET
+  path: /v1/environments/{environment_id}/work/stats?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_acknowledge_work_v1_environments__environment_id__work__work_id__ack_post
+  method: POST
+  path: /v1/environments/{environment_id}/work/{work_id}/ack?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_record_heartbeat_v1_environments__environment_id__work__work_id__heartbeat_post
+  method: POST
+  path: /v1/environments/{environment_id}/work/{work_id}/heartbeat?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_stop_work_v1_environments__environment_id__work__work_id__stop_post
+  method: POST
+  path: /v1/environments/{environment_id}/work/{work_id}/stop?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_work_v1_environments__environment_id__work__work_id__get
+  method: GET
+  path: /v1/environments/{environment_id}/work/{work_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_update_work_v1_environments__environment_id__work__work_id__post
+  method: POST
+  path: /v1/environments/{environment_id}/work/{work_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_work_v1_environments__environment_id__work_get
+  method: GET
+  path: /v1/environments/{environment_id}/work?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_delete_environment_v1_environments__environment_id__delete
+  method: DELETE
+  path: /v1/environments/{environment_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_environment_v1_environments__environment_id__get
+  method: GET
+  path: /v1/environments/{environment_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_update_environment_v1_environments__environment_id__post
+  method: POST
+  path: /v1/environments/{environment_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_environments_v1_environments_get
+  method: GET
+  path: /v1/environments?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_create_environment_v1_environments_post
+  method: POST
+  path: /v1/environments?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_download_file_v1_files__file_id__content_get
+  method: GET
+  path: /v1/files/{file_id}/content?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_delete_file_v1_files__file_id__delete
+  method: DELETE
+  path: /v1/files/{file_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_file_metadata_v1_files__file_id__get
+  method: GET
+  path: /v1/files/{file_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_files_v1_files_get
+  method: GET
+  path: /v1/files?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_upload_file_v1_files_post
+  method: POST
+  path: /v1/files?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaArchiveMemoryStore
+  method: POST
+  path: /v1/memory_stores/{memory_store_id}/archive?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaDeleteMemory
+  method: DELETE
+  path: /v1/memory_stores/{memory_store_id}/memories/{memory_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaGetMemory
+  method: GET
+  path: /v1/memory_stores/{memory_store_id}/memories/{memory_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaUpdateMemory
+  method: POST
+  path: /v1/memory_stores/{memory_store_id}/memories/{memory_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaListMemories
+  method: GET
+  path: /v1/memory_stores/{memory_store_id}/memories?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaCreateMemory
+  method: POST
+  path: /v1/memory_stores/{memory_store_id}/memories?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaRedactMemoryVersion
+  method: POST
+  path: /v1/memory_stores/{memory_store_id}/memory_versions/{memory_version_id}/redact?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaGetMemoryVersion
+  method: GET
+  path: /v1/memory_stores/{memory_store_id}/memory_versions/{memory_version_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaListMemoryVersions
+  method: GET
+  path: /v1/memory_stores/{memory_store_id}/memory_versions?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaDeleteMemoryStore
+  method: DELETE
+  path: /v1/memory_stores/{memory_store_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaGetMemoryStore
+  method: GET
+  path: /v1/memory_stores/{memory_store_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaUpdateMemoryStore
+  method: POST
+  path: /v1/memory_stores/{memory_store_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaListMemoryStores
+  method: GET
+  path: /v1/memory_stores?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaCreateMemoryStore
+  method: POST
+  path: /v1/memory_stores?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: message_batches_delete
+  method: DELETE
+  path: /v1/messages/batches/{message_batch_id}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: message_batches_cancel
+  method: POST
+  path: /v1/messages/batches/{message_batch_id}/cancel
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: beta_message_batches_cancel
+  method: POST
+  path: /v1/messages/batches/{message_batch_id}/cancel?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: message_batches_results
+  method: GET
+  path: /v1/messages/batches/{message_batch_id}/results
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+- operationId: beta_message_batches_results
+  method: GET
+  path: /v1/messages/batches/{message_batch_id}/results?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_message_batches_delete
+  method: DELETE
+  path: /v1/messages/batches/{message_batch_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_message_batches_retrieve
+  method: GET
+  path: /v1/messages/batches/{message_batch_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_message_batches_list
+  method: GET
+  path: /v1/messages/batches?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_message_batches_post
+  method: POST
+  path: /v1/messages/batches?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_messages_count_tokens_post
+  method: POST
+  path: /v1/messages/count_tokens?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_messages_post
+  method: POST
+  path: /v1/messages?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_models_get
+  method: GET
+  path: /v1/models/{model_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_models_list
+  method: GET
+  path: /v1/models?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_projects_v1_organizations_analytics_apps_chat_projects_get
+  method: GET
+  path: /v1/organizations/analytics/apps/chat/projects?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_artifacts_v1_organizations_analytics_artifacts_get
+  method: GET
+  path: /v1/organizations/analytics/artifacts?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_connectors_v1_organizations_analytics_connectors_get
+  method: GET
+  path: /v1/organizations/analytics/connectors?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_cost_report_v1_organizations_analytics_cost_report_get
+  method: GET
+  path: /v1/organizations/analytics/cost_report?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_plugins_v1_organizations_analytics_plugins_get
+  method: GET
+  path: /v1/organizations/analytics/plugins?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_skills_v1_organizations_analytics_skills_get
+  method: GET
+  path: /v1/organizations/analytics/skills?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_summaries_v1_organizations_analytics_summaries_get
+  method: GET
+  path: /v1/organizations/analytics/summaries?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_usage_report_v1_organizations_analytics_usage_report_get
+  method: GET
+  path: /v1/organizations/analytics/usage_report?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_user_cost_report_v1_organizations_analytics_user_cost_report_get
+  method: GET
+  path: /v1/organizations/analytics/user_cost_report?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_user_usage_report_v1_organizations_analytics_user_usage_report_get
+  method: GET
+  path: /v1/organizations/analytics/user_usage_report?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_users_v1_organizations_analytics_users_get
+  method: GET
+  path: /v1/organizations/analytics/users?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_api_key_v1_organizations_api_keys__api_key_id__get
+  method: GET
+  path: /v1/organizations/api_keys/{api_key_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_update_api_key_v1_organizations_api_keys__api_key_id__post
+  method: POST
+  path: /v1/organizations/api_keys/{api_key_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_api_keys_v1_organizations_api_keys_get
+  method: GET
+  path: /v1/organizations/api_keys?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_compliance_settings_v1_organizations_compliance_settings_get
+  method: GET
+  path: /v1/organizations/compliance_settings?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_update_compliance_settings_v1_organizations_compliance_settings_post
+  method: POST
+  path: /v1/organizations/compliance_settings?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_cost_report_v1_organizations_cost_report_get
+  method: GET
+  path: /v1/organizations/cost_report?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_validate_external_key_v1_organizations_external_keys__external_key_id__validate_post
+  method: POST
+  path: /v1/organizations/external_keys/{external_key_id}/validate?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_delete_external_key_v1_organizations_external_keys__external_key_id__delete
+  method: DELETE
+  path: /v1/organizations/external_keys/{external_key_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_external_key_v1_organizations_external_keys__external_key_id__get
+  method: GET
+  path: /v1/organizations/external_keys/{external_key_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_update_external_key_v1_organizations_external_keys__external_key_id__post
+  method: POST
+  path: /v1/organizations/external_keys/{external_key_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_external_keys_v1_organizations_external_keys_get
+  method: GET
+  path: /v1/organizations/external_keys?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_create_external_key_v1_organizations_external_keys_post
+  method: POST
+  path: /v1/organizations/external_keys?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_archive_federation_issuer_v1_organizations_federation_issuers__federation_issuer_id__archive_post
+  method: POST
+  path: /v1/organizations/federation_issuers/{federation_issuer_id}/archive?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_federation_issuer_v1_organizations_federation_issuers__federation_issuer_id__get
+  method: GET
+  path: /v1/organizations/federation_issuers/{federation_issuer_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_update_federation_issuer_v1_organizations_federation_issuers__federation_issuer_id__post
+  method: POST
+  path: /v1/organizations/federation_issuers/{federation_issuer_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_federation_issuers_v1_organizations_federation_issuers_get
+  method: GET
+  path: /v1/organizations/federation_issuers?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_create_federation_issuer_v1_organizations_federation_issuers_post
+  method: POST
+  path: /v1/organizations/federation_issuers?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_archive_federation_rule_v1_organizations_federation_rules__federation_rule_id__archive_post
+  method: POST
+  path: /v1/organizations/federation_rules/{federation_rule_id}/archive?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_remove_federation_rule_workspace_v1_organizations_federation_rules__federation_rule_id__workspaces__workspace_id__delete
+  method: DELETE
+  path: /v1/organizations/federation_rules/{federation_rule_id}/workspaces/{workspace_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_federation_rule_workspaces_v1_organizations_federation_rules__federation_rule_id__workspaces_get
+  method: GET
+  path: /v1/organizations/federation_rules/{federation_rule_id}/workspaces?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_add_federation_rule_workspace_v1_organizations_federation_rules__federation_rule_id__workspaces_post
+  method: POST
+  path: /v1/organizations/federation_rules/{federation_rule_id}/workspaces?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_federation_rule_v1_organizations_federation_rules__federation_rule_id__get
+  method: GET
+  path: /v1/organizations/federation_rules/{federation_rule_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_update_federation_rule_v1_organizations_federation_rules__federation_rule_id__post
+  method: POST
+  path: /v1/organizations/federation_rules/{federation_rule_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_federation_rules_v1_organizations_federation_rules_get
+  method: GET
+  path: /v1/organizations/federation_rules?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_create_federation_rule_v1_organizations_federation_rules_post
+  method: POST
+  path: /v1/organizations/federation_rules?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_delete_invite_v1_organizations_invites__invite_id__delete
+  method: DELETE
+  path: /v1/organizations/invites/{invite_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_invite_v1_organizations_invites__invite_id__get
+  method: GET
+  path: /v1/organizations/invites/{invite_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_invites_v1_organizations_invites_get
+  method: GET
+  path: /v1/organizations/invites?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_create_invite_v1_organizations_invites_post
+  method: POST
+  path: /v1/organizations/invites?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_current_organization_v1_organizations_me_get
+  method: GET
+  path: /v1/organizations/me?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_org_rate_limits_v1_organizations_rate_limits_get
+  method: GET
+  path: /v1/organizations/rate_limits?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_remove_rbac_group_member_v1_organizations_rbac_groups__group_id__members__user_id__delete
+  method: DELETE
+  path: /v1/organizations/rbac_groups/{group_id}/members/{user_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_rbac_group_members_v1_organizations_rbac_groups__group_id__members_get
+  method: GET
+  path: /v1/organizations/rbac_groups/{group_id}/members?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_add_rbac_group_member_v1_organizations_rbac_groups__group_id__members_post
+  method: POST
+  path: /v1/organizations/rbac_groups/{group_id}/members?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_delete_rbac_group_v1_organizations_rbac_groups__group_id__delete
+  method: DELETE
+  path: /v1/organizations/rbac_groups/{group_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_rbac_group_v1_organizations_rbac_groups__group_id__get
+  method: GET
+  path: /v1/organizations/rbac_groups/{group_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_update_rbac_group_v1_organizations_rbac_groups__group_id__post
+  method: POST
+  path: /v1/organizations/rbac_groups/{group_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_rbac_groups_v1_organizations_rbac_groups_get
+  method: GET
+  path: /v1/organizations/rbac_groups?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_create_rbac_group_v1_organizations_rbac_groups_post
+  method: POST
+  path: /v1/organizations/rbac_groups?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_rbac_role_permissions_v1_organizations_rbac_roles__role_id__permissions_get
+  method: GET
+  path: /v1/organizations/rbac_roles/{role_id}/permissions?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_rbac_role_v1_organizations_rbac_roles__role_id__get
+  method: GET
+  path: /v1/organizations/rbac_roles/{role_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_rbac_roles_v1_organizations_rbac_roles_get
+  method: GET
+  path: /v1/organizations/rbac_roles?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_archive_service_account_v1_organizations_service_accounts__service_account_id__archive_post
+  method: POST
+  path: /v1/organizations/service_accounts/{service_account_id}/archive?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_remove_workspace_from_service_account_v1_organizations_service_accounts__service_account_id__workspaces__workspace_id__delete
+  method: DELETE
+  path: /v1/organizations/service_accounts/{service_account_id}/workspaces/{workspace_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_workspaces_for_service_account_v1_organizations_service_accounts__service_account_id__workspaces_get
+  method: GET
+  path: /v1/organizations/service_accounts/{service_account_id}/workspaces?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_add_workspace_to_service_account_v1_organizations_service_accounts__service_account_id__workspaces_post
+  method: POST
+  path: /v1/organizations/service_accounts/{service_account_id}/workspaces?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_service_account_v1_organizations_service_accounts__service_account_id__get
+  method: GET
+  path: /v1/organizations/service_accounts/{service_account_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_update_service_account_v1_organizations_service_accounts__service_account_id__post
+  method: POST
+  path: /v1/organizations/service_accounts/{service_account_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_service_accounts_v1_organizations_service_accounts_get
+  method: GET
+  path: /v1/organizations/service_accounts?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_create_service_account_v1_organizations_service_accounts_post
+  method: POST
+  path: /v1/organizations/service_accounts?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_approve_spend_limit_increase_request_v1_organizations_spend_limit_increase_requests__spend_limit_increase_request_id__approve_post
+  method: POST
+  path: /v1/organizations/spend_limit_increase_requests/{spend_limit_increase_request_id}/approve?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_deny_spend_limit_increase_request_v1_organizations_spend_limit_increase_requests__spend_limit_increase_request_id__deny_post
+  method: POST
+  path: /v1/organizations/spend_limit_increase_requests/{spend_limit_increase_request_id}/deny?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_spend_limit_increase_request_v1_organizations_spend_limit_increase_requests__spend_limit_increase_request_id__get
+  method: GET
+  path: /v1/organizations/spend_limit_increase_requests/{spend_limit_increase_request_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_spend_limit_increase_requests_v1_organizations_spend_limit_increase_requests_get
+  method: GET
+  path: /v1/organizations/spend_limit_increase_requests?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_effective_spend_limits_v1_organizations_spend_limits_effective_get
+  method: GET
+  path: /v1/organizations/spend_limits/effective?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_delete_spend_limit_v1_organizations_spend_limits__spend_limit_id__delete
+  method: DELETE
+  path: /v1/organizations/spend_limits/{spend_limit_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_spend_limit_v1_organizations_spend_limits__spend_limit_id__get
+  method: GET
+  path: /v1/organizations/spend_limits/{spend_limit_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_set_spend_limit_v1_organizations_spend_limits_post
+  method: POST
+  path: /v1/organizations/spend_limits?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_archive_tunnel_v1_organizations_tunnels__tunnel_id__archive_post
+  method: POST
+  path: /v1/organizations/tunnels/{tunnel_id}/archive?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_archive_certificate_v1_organizations_tunnels__tunnel_id__certificates__certificate_id__archive_post
+  method: POST
+  path: /v1/organizations/tunnels/{tunnel_id}/certificates/{certificate_id}/archive?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_certificate_v1_organizations_tunnels__tunnel_id__certificates__certificate_id__get
+  method: GET
+  path: /v1/organizations/tunnels/{tunnel_id}/certificates/{certificate_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_certificates_v1_organizations_tunnels__tunnel_id__certificates_get
+  method: GET
+  path: /v1/organizations/tunnels/{tunnel_id}/certificates?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_create_certificate_v1_organizations_tunnels__tunnel_id__certificates_post
+  method: POST
+  path: /v1/organizations/tunnels/{tunnel_id}/certificates?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_reveal_tunnel_token_v1_organizations_tunnels__tunnel_id__reveal_token_post
+  method: POST
+  path: /v1/organizations/tunnels/{tunnel_id}/reveal_token?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_rotate_tunnel_token_v1_organizations_tunnels__tunnel_id__rotate_token_post
+  method: POST
+  path: /v1/organizations/tunnels/{tunnel_id}/rotate_token?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_tunnel_v1_organizations_tunnels__tunnel_id__get
+  method: GET
+  path: /v1/organizations/tunnels/{tunnel_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_tunnels_v1_organizations_tunnels_get
+  method: GET
+  path: /v1/organizations/tunnels?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_claude_code_usage_report_v1_organizations_usage_report_claude_code_get
+  method: GET
+  path: /v1/organizations/usage_report/claude_code?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_messages_usage_report_v1_organizations_usage_report_messages_get
+  method: GET
+  path: /v1/organizations/usage_report/messages?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_remove_user_v1_organizations_users__user_id__delete
+  method: DELETE
+  path: /v1/organizations/users/{user_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_user_v1_organizations_users__user_id__get
+  method: GET
+  path: /v1/organizations/users/{user_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_update_user_v1_organizations_users__user_id__post
+  method: POST
+  path: /v1/organizations/users/{user_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_users_v1_organizations_users_get
+  method: GET
+  path: /v1/organizations/users?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_archive_workspace_v1_organizations_workspaces__workspace_id__archive_post
+  method: POST
+  path: /v1/organizations/workspaces/{workspace_id}/archive?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_delete_workspace_member_v1_organizations_workspaces__workspace_id__members__user_id__delete
+  method: DELETE
+  path: /v1/organizations/workspaces/{workspace_id}/members/{user_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_workspace_member_v1_organizations_workspaces__workspace_id__members__user_id__get
+  method: GET
+  path: /v1/organizations/workspaces/{workspace_id}/members/{user_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_update_workspace_member_v1_organizations_workspaces__workspace_id__members__user_id__post
+  method: POST
+  path: /v1/organizations/workspaces/{workspace_id}/members/{user_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_workspace_members_v1_organizations_workspaces__workspace_id__members_get
+  method: GET
+  path: /v1/organizations/workspaces/{workspace_id}/members?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_create_workspace_member_v1_organizations_workspaces__workspace_id__members_post
+  method: POST
+  path: /v1/organizations/workspaces/{workspace_id}/members?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_workspace_rate_limits_v1_organizations_workspaces__workspace_id__rate_limits_get
+  method: GET
+  path: /v1/organizations/workspaces/{workspace_id}/rate_limits?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_delete_service_account_workspace_member_v1_organizations_workspaces__workspace_id__service_accounts__service_account_id__delete
+  method: DELETE
+  path: /v1/organizations/workspaces/{workspace_id}/service_accounts/{service_account_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_service_account_workspace_member_v1_organizations_workspaces__workspace_id__service_accounts__service_account_id__get
+  method: GET
+  path: /v1/organizations/workspaces/{workspace_id}/service_accounts/{service_account_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_update_service_account_workspace_member_v1_organizations_workspaces__workspace_id__service_accounts__service_account_id__post
+  method: POST
+  path: /v1/organizations/workspaces/{workspace_id}/service_accounts/{service_account_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_service_account_workspace_members_v1_organizations_workspaces__workspace_id__service_accounts_get
+  method: GET
+  path: /v1/organizations/workspaces/{workspace_id}/service_accounts?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_create_service_account_workspace_member_v1_organizations_workspaces__workspace_id__service_accounts_post
+  method: POST
+  path: /v1/organizations/workspaces/{workspace_id}/service_accounts?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_workspace_v1_organizations_workspaces__workspace_id__get
+  method: GET
+  path: /v1/organizations/workspaces/{workspace_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_update_workspace_v1_organizations_workspaces__workspace_id__post
+  method: POST
+  path: /v1/organizations/workspaces/{workspace_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_workspaces_v1_organizations_workspaces_get
+  method: GET
+  path: /v1/organizations/workspaces?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_create_workspace_v1_organizations_workspaces_post
+  method: POST
+  path: /v1/organizations/workspaces?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaArchiveSession
+  method: POST
+  path: /v1/sessions/{session_id}/archive?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaStreamSessionEvents
+  method: GET
+  path: /v1/sessions/{session_id}/events/stream?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaListEvents
+  method: GET
+  path: /v1/sessions/{session_id}/events?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaSendEvents
+  method: POST
+  path: /v1/sessions/{session_id}/events?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaDeleteResource
+  method: DELETE
+  path: /v1/sessions/{session_id}/resources/{resource_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaGetResource
+  method: GET
+  path: /v1/sessions/{session_id}/resources/{resource_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaUpdateResource
+  method: POST
+  path: /v1/sessions/{session_id}/resources/{resource_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaListResources
+  method: GET
+  path: /v1/sessions/{session_id}/resources?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaAddResource
+  method: POST
+  path: /v1/sessions/{session_id}/resources?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaArchiveSessionThread
+  method: POST
+  path: /v1/sessions/{session_id}/threads/{thread_id}/archive?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaListSessionThreadEvents
+  method: GET
+  path: /v1/sessions/{session_id}/threads/{thread_id}/events?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaStreamSessionThreadEvents
+  method: GET
+  path: /v1/sessions/{session_id}/threads/{thread_id}/stream?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaGetSessionThread
+  method: GET
+  path: /v1/sessions/{session_id}/threads/{thread_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaListSessionThreads
+  method: GET
+  path: /v1/sessions/{session_id}/threads?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaDeleteSession
+  method: DELETE
+  path: /v1/sessions/{session_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaGetSession
+  method: GET
+  path: /v1/sessions/{session_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaUpdateSession
+  method: POST
+  path: /v1/sessions/{session_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaListSessions
+  method: GET
+  path: /v1/sessions?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaCreateSession
+  method: POST
+  path: /v1/sessions?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: list_skill_versions_v1_skills__skill_id__versions_get
+  method: GET
+  path: /v1/skills/{skill_id}/versions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  ambiguous: true
+  ambiguous_note: This operation has the same shape in another profile in this domain, so a declaration
+    cannot be attributed to one interface by path alone. The count is reported, the attribution is not.
+- operationId: create_skill_version_v1_skills__skill_id__versions_post
+  method: POST
+  path: /v1/skills/{skill_id}/versions
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  ambiguous: true
+  ambiguous_note: This operation has the same shape in another profile in this domain, so a declaration
+    cannot be attributed to one interface by path alone. The count is reported, the attribution is not.
+- operationId: delete_skill_version_v1_skills__skill_id__versions__version__delete
+  method: DELETE
+  path: /v1/skills/{skill_id}/versions/{version}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  ambiguous: true
+  ambiguous_note: This operation has the same shape in another profile in this domain, so a declaration
+    cannot be attributed to one interface by path alone. The count is reported, the attribution is not.
+- operationId: get_skill_version_v1_skills__skill_id__versions__version__get
+  method: GET
+  path: /v1/skills/{skill_id}/versions/{version}
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  ambiguous: true
+  ambiguous_note: This operation has the same shape in another profile in this domain, so a declaration
+    cannot be attributed to one interface by path alone. The count is reported, the attribution is not.
+- operationId: beta_download_skill_version_content_v1_skills__skill_id__versions__version__content_get
+  method: GET
+  path: /v1/skills/{skill_id}/versions/{version}/content?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_delete_skill_version_v1_skills__skill_id__versions__version__delete
+  method: DELETE
+  path: /v1/skills/{skill_id}/versions/{version}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_skill_version_v1_skills__skill_id__versions__version__get
+  method: GET
+  path: /v1/skills/{skill_id}/versions/{version}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_skill_versions_v1_skills__skill_id__versions_get
+  method: GET
+  path: /v1/skills/{skill_id}/versions?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_create_skill_version_v1_skills__skill_id__versions_post
+  method: POST
+  path: /v1/skills/{skill_id}/versions?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_delete_skill_v1_skills__skill_id__delete
+  method: DELETE
+  path: /v1/skills/{skill_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_get_skill_v1_skills__skill_id__get
+  method: GET
+  path: /v1/skills/{skill_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_list_skills_v1_skills_get
+  method: GET
+  path: /v1/skills?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: beta_create_skill_v1_skills_post
+  method: POST
+  path: /v1/skills?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaArchiveTunnel
+  method: POST
+  path: /v1/tunnels/{tunnel_id}/archive?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaArchiveTunnelCertificate
+  method: POST
+  path: /v1/tunnels/{tunnel_id}/certificates/{certificate_id}/archive?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaGetTunnelCertificate
+  method: GET
+  path: /v1/tunnels/{tunnel_id}/certificates/{certificate_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaListTunnelCertificates
+  method: GET
+  path: /v1/tunnels/{tunnel_id}/certificates?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaCreateTunnelCertificate
+  method: POST
+  path: /v1/tunnels/{tunnel_id}/certificates?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaRevealTunnelToken
+  method: POST
+  path: /v1/tunnels/{tunnel_id}/reveal_token?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaRotateTunnelToken
+  method: POST
+  path: /v1/tunnels/{tunnel_id}/rotate_token?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaGetTunnel
+  method: GET
+  path: /v1/tunnels/{tunnel_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaListTunnels
+  method: GET
+  path: /v1/tunnels?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaCreateTunnel
+  method: POST
+  path: /v1/tunnels?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaCreateEnrollmentUrl
+  method: POST
+  path: /v1/user_profiles/{user_profile_id}/enrollment_url?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaGetUserProfile
+  method: GET
+  path: /v1/user_profiles/{user_profile_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaUpdateUserProfile
+  method: POST
+  path: /v1/user_profiles/{user_profile_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaListUserProfiles
+  method: GET
+  path: /v1/user_profiles?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaCreateUserProfile
+  method: POST
+  path: /v1/user_profiles?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaArchiveVault
+  method: POST
+  path: /v1/vaults/{vault_id}/archive?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaArchiveCredential
+  method: POST
+  path: /v1/vaults/{vault_id}/credentials/{credential_id}/archive?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaValidateCredential
+  method: POST
+  path: /v1/vaults/{vault_id}/credentials/{credential_id}/mcp_oauth_validate?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaDeleteCredential
+  method: DELETE
+  path: /v1/vaults/{vault_id}/credentials/{credential_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaGetCredential
+  method: GET
+  path: /v1/vaults/{vault_id}/credentials/{credential_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaUpdateCredential
+  method: POST
+  path: /v1/vaults/{vault_id}/credentials/{credential_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaListCredentials
+  method: GET
+  path: /v1/vaults/{vault_id}/credentials?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaCreateCredential
+  method: POST
+  path: /v1/vaults/{vault_id}/credentials?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaDeleteVault
+  method: DELETE
+  path: /v1/vaults/{vault_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaGetVault
+  method: GET
+  path: /v1/vaults/{vault_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaUpdateVault
+  method: POST
+  path: /v1/vaults/{vault_id}?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaListVaults
+  method: GET
+  path: /v1/vaults?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
+- operationId: BetaCreateVault
+  method: POST
+  path: /v1/vaults?beta=true
+  tier: vendor
+  adopters_declaring: 0
+  percent_of_cohort: 0.0
+  evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.

@@ -1,0 +1,481 @@
+{
+  "properties": {
+    "data": {
+      "items": {
+        "properties": {
+          "capabilities": {
+            "anyOf": [
+              {
+                "properties": {
+                  "batch": {
+                    "properties": {
+                      "supported": {
+                        "type": "boolean",
+                        "title": "Supported",
+                        "description": "Whether this capability is supported by the model."
+                      }
+                    },
+                    "type": "object",
+                    "required": [
+                      "supported"
+                    ],
+                    "title": "CapabilitySupport",
+                    "description": "Indicates whether a capability is supported."
+                  },
+                  "citations": {
+                    "properties": {
+                      "supported": {
+                        "type": "boolean",
+                        "title": "Supported",
+                        "description": "Whether this capability is supported by the model."
+                      }
+                    },
+                    "type": "object",
+                    "required": [
+                      "supported"
+                    ],
+                    "title": "CapabilitySupport",
+                    "description": "Indicates whether a capability is supported."
+                  },
+                  "code_execution": {
+                    "properties": {
+                      "supported": {
+                        "type": "boolean",
+                        "title": "Supported",
+                        "description": "Whether this capability is supported by the model."
+                      }
+                    },
+                    "type": "object",
+                    "required": [
+                      "supported"
+                    ],
+                    "title": "CapabilitySupport",
+                    "description": "Indicates whether a capability is supported."
+                  },
+                  "context_management": {
+                    "properties": {
+                      "clear_thinking_20251015": {
+                        "anyOf": [
+                          {
+                            "properties": {
+                              "supported": {
+                                "type": "boolean",
+                                "title": "Supported",
+                                "description": "Whether this capability is supported by the model."
+                              }
+                            },
+                            "type": "object",
+                            "required": [
+                              "supported"
+                            ],
+                            "title": "CapabilitySupport",
+                            "description": "Indicates whether a capability is supported."
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Whether the clear_thinking_20251015 strategy is supported."
+                      },
+                      "clear_tool_uses_20250919": {
+                        "anyOf": [
+                          {
+                            "properties": {
+                              "supported": {
+                                "type": "boolean",
+                                "title": "Supported",
+                                "description": "Whether this capability is supported by the model."
+                              }
+                            },
+                            "type": "object",
+                            "required": [
+                              "supported"
+                            ],
+                            "title": "CapabilitySupport",
+                            "description": "Indicates whether a capability is supported."
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Whether the clear_tool_uses_20250919 strategy is supported."
+                      },
+                      "compact_20260112": {
+                        "anyOf": [
+                          {
+                            "properties": {
+                              "supported": {
+                                "type": "boolean",
+                                "title": "Supported",
+                                "description": "Whether this capability is supported by the model."
+                              }
+                            },
+                            "type": "object",
+                            "required": [
+                              "supported"
+                            ],
+                            "title": "CapabilitySupport",
+                            "description": "Indicates whether a capability is supported."
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Whether the compact_20260112 strategy is supported."
+                      },
+                      "supported": {
+                        "type": "boolean",
+                        "title": "Supported",
+                        "description": "Whether this capability is supported by the model."
+                      }
+                    },
+                    "type": "object",
+                    "required": [
+                      "clear_thinking_20251015",
+                      "clear_tool_uses_20250919",
+                      "compact_20260112",
+                      "supported"
+                    ],
+                    "title": "ContextManagementCapability",
+                    "description": "Context management capability details."
+                  },
+                  "effort": {
+                    "properties": {
+                      "high": {
+                        "properties": {
+                          "supported": {
+                            "type": "boolean",
+                            "title": "Supported",
+                            "description": "Whether this capability is supported by the model."
+                          }
+                        },
+                        "type": "object",
+                        "required": [
+                          "supported"
+                        ],
+                        "title": "CapabilitySupport",
+                        "description": "Indicates whether a capability is supported."
+                      },
+                      "low": {
+                        "properties": {
+                          "supported": {
+                            "type": "boolean",
+                            "title": "Supported",
+                            "description": "Whether this capability is supported by the model."
+                          }
+                        },
+                        "type": "object",
+                        "required": [
+                          "supported"
+                        ],
+                        "title": "CapabilitySupport",
+                        "description": "Indicates whether a capability is supported."
+                      },
+                      "max": {
+                        "properties": {
+                          "supported": {
+                            "type": "boolean",
+                            "title": "Supported",
+                            "description": "Whether this capability is supported by the model."
+                          }
+                        },
+                        "type": "object",
+                        "required": [
+                          "supported"
+                        ],
+                        "title": "CapabilitySupport",
+                        "description": "Indicates whether a capability is supported."
+                      },
+                      "medium": {
+                        "properties": {
+                          "supported": {
+                            "type": "boolean",
+                            "title": "Supported",
+                            "description": "Whether this capability is supported by the model."
+                          }
+                        },
+                        "type": "object",
+                        "required": [
+                          "supported"
+                        ],
+                        "title": "CapabilitySupport",
+                        "description": "Indicates whether a capability is supported."
+                      },
+                      "supported": {
+                        "type": "boolean",
+                        "title": "Supported",
+                        "description": "Whether this capability is supported by the model."
+                      },
+                      "xhigh": {
+                        "anyOf": [
+                          {
+                            "properties": {
+                              "supported": {
+                                "type": "boolean",
+                                "title": "Supported",
+                                "description": "Whether this capability is supported by the model."
+                              }
+                            },
+                            "type": "object",
+                            "required": [
+                              "supported"
+                            ],
+                            "title": "CapabilitySupport",
+                            "description": "Indicates whether a capability is supported."
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ],
+                        "description": "Whether the model supports xhigh effort level."
+                      }
+                    },
+                    "type": "object",
+                    "required": [
+                      "high",
+                      "low",
+                      "max",
+                      "medium",
+                      "supported",
+                      "xhigh"
+                    ],
+                    "title": "EffortCapability",
+                    "description": "Effort (reasoning_effort) capability details."
+                  },
+                  "image_input": {
+                    "properties": {
+                      "supported": {
+                        "type": "boolean",
+                        "title": "Supported",
+                        "description": "Whether this capability is supported by the model."
+                      }
+                    },
+                    "type": "object",
+                    "required": [
+                      "supported"
+                    ],
+                    "title": "CapabilitySupport",
+                    "description": "Indicates whether a capability is supported."
+                  },
+                  "pdf_input": {
+                    "properties": {
+                      "supported": {
+                        "type": "boolean",
+                        "title": "Supported",
+                        "description": "Whether this capability is supported by the model."
+                      }
+                    },
+                    "type": "object",
+                    "required": [
+                      "supported"
+                    ],
+                    "title": "CapabilitySupport",
+                    "description": "Indicates whether a capability is supported."
+                  },
+                  "structured_outputs": {
+                    "properties": {
+                      "supported": {
+                        "type": "boolean",
+                        "title": "Supported",
+                        "description": "Whether this capability is supported by the model."
+                      }
+                    },
+                    "type": "object",
+                    "required": [
+                      "supported"
+                    ],
+                    "title": "CapabilitySupport",
+                    "description": "Indicates whether a capability is supported."
+                  },
+                  "thinking": {
+                    "properties": {
+                      "supported": {
+                        "type": "boolean",
+                        "title": "Supported",
+                        "description": "Whether this capability is supported by the model."
+                      },
+                      "types": {
+                        "properties": {
+                          "adaptive": {
+                            "properties": {
+                              "supported": {
+                                "type": "boolean",
+                                "title": "Supported",
+                                "description": "Whether this capability is supported by the model."
+                              }
+                            },
+                            "type": "object",
+                            "required": [
+                              "supported"
+                            ],
+                            "title": "CapabilitySupport",
+                            "description": "Indicates whether a capability is supported."
+                          },
+                          "enabled": {
+                            "properties": {
+                              "supported": {
+                                "type": "boolean",
+                                "title": "Supported",
+                                "description": "Whether this capability is supported by the model."
+                              }
+                            },
+                            "type": "object",
+                            "required": [
+                              "supported"
+                            ],
+                            "title": "CapabilitySupport",
+                            "description": "Indicates whether a capability is supported."
+                          }
+                        },
+                        "type": "object",
+                        "required": [
+                          "adaptive",
+                          "enabled"
+                        ],
+                        "title": "ThinkingTypes",
+                        "description": "Supported thinking type configurations."
+                      }
+                    },
+                    "type": "object",
+                    "required": [
+                      "supported",
+                      "types"
+                    ],
+                    "title": "ThinkingCapability",
+                    "description": "Thinking capability details."
+                  }
+                },
+                "type": "object",
+                "required": [
+                  "batch",
+                  "citations",
+                  "code_execution",
+                  "context_management",
+                  "effort",
+                  "image_input",
+                  "pdf_input",
+                  "structured_outputs",
+                  "thinking"
+                ],
+                "title": "ModelCapabilities",
+                "description": "Model capability information."
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Object mapping capability names to their support details. Keys are always present for all known capabilities."
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At",
+            "description": "RFC 3339 datetime string representing the time at which the model was released. May be set to an epoch value if the release date is unknown.",
+            "examples": [
+              "2026-07-24T00:00:00Z"
+            ]
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name",
+            "description": "A human-readable name for the model.",
+            "examples": [
+              "Claude Opus 5"
+            ]
+          },
+          "id": {
+            "type": "string",
+            "title": "Id",
+            "description": "Unique model identifier.",
+            "examples": [
+              "claude-opus-5"
+            ]
+          },
+          "max_input_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Input Tokens",
+            "description": "Maximum input context window size in tokens for this model."
+          },
+          "max_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Tokens",
+            "description": "Maximum value for the `max_tokens` parameter when using this model."
+          },
+          "type": {
+            "type": "string",
+            "const": "model",
+            "title": "Type",
+            "description": "Object type.\n\nFor Models, this is always `\"model\"`.",
+            "default": "model"
+          }
+        },
+        "type": "object",
+        "required": [
+          "capabilities",
+          "created_at",
+          "display_name",
+          "id",
+          "max_input_tokens",
+          "max_tokens",
+          "type"
+        ],
+        "title": "ModelInfo"
+      },
+      "type": "array",
+      "title": "Data"
+    },
+    "first_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "First Id",
+      "description": "First ID in the `data` list. Can be used as the `before_id` for the previous page."
+    },
+    "has_more": {
+      "type": "boolean",
+      "title": "Has More",
+      "description": "Indicates if there are more results in the requested page direction."
+    },
+    "last_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Last Id",
+      "description": "Last ID in the `data` list. Can be used as the `after_id` for the next page."
+    }
+  },
+  "type": "object",
+  "required": [
+    "data",
+    "first_id",
+    "has_more",
+    "last_id"
+  ],
+  "title": "models_list response",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-commons/models/main/standard/anthropic-messages-v1/schema/models_list-response.json"
+}

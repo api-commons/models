@@ -1,0 +1,275 @@
+# SPDX-License-Identifier: CC-BY-NC-SA-4.0
+#
+# The Anthropic Messages dialect, as a Spectral ruleset.
+#
+# Point it at a provider's own OpenAPI and it reports whether they reach the core tier of
+# the Anthropic Messages API, and whether what they declare has the shape a client written
+# against Anthropic expects.
+#
+# THE MEASUREMENT IS NARROWER THAN IT LOOKS. 29 of Anthropic's operations share a path
+# shape with the OpenAI interface — /models, /files, /skills, /vaults, /agents — so a
+# provider declaring GET /models tells you nothing about which dialect they speak.
+# Grading against every provider that publishes a spec put GET /models at 86.3%, a number
+# that was measuring OpenAI. The cohort here is restricted to the 29 providers declaring
+# at least one operation UNIQUE to Anthropic. Within it, POST /v1/messages is declared by
+# 69.0% and GET /v1/models by 72.4%. See ../profile.yml, where every shared operation
+# carries `ambiguous: true`.
+#
+# WHAT THIS DOES NOT CHECK
+#   - Runtime behaviour. A spec is a claim about a server, not the server.
+#   - Streaming. SSE framing is not expressible in OpenAPI.
+#   - Content block semantics. Whether a provider's `content` array carries real tool_use
+#     blocks, or only text, is not visible in a path and a schema.
+#   - Beta surfaces. Anthropic's own document expresses these as a query string on the
+#     path key, which is not a valid OpenAPI path; they are graded in profile.yml and
+#     excluded from the profile OpenAPI.
+#
+# Built-in functions only, so it runs unchanged in the browser validator.
+formats: [oas3]
+
+aliases:
+  MessagePaths:
+    - "$.paths[?(@property.match(/(^|\\/)messages$/))]"
+  ModelsPaths:
+    - "$.paths[?(@property.match(/(^|\\/)models$/))]"
+
+rules:
+
+  anthropic-core-create-message:
+    description: >-
+      POST .../messages is the core of the Anthropic dialect and the only operation that
+      identifies it — 69.0% of the cohort declares it, and unlike /models it cannot be
+      confused with the OpenAI interface.
+    message: "No messages path found. This is the operation that makes the dialect identifiable."
+    severity: error
+    documentationUrl: https://apicommons.org/standards/models/#core
+    given: "$"
+    then:
+      field: paths
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          minProperties: 1
+          not:
+            propertyNames:
+              not:
+                pattern: "(^|/)messages$"
+
+  anthropic-core-list-models:
+    description: >-
+      GET .../models is declared by 72.4% of the cohort. Note that this path has the same
+      shape in the OpenAI interface, so its presence is evidence of a model listing and
+      not evidence of this dialect.
+    message: "No models path found. Clients cannot discover what this provider serves."
+    severity: error
+    documentationUrl: https://apicommons.org/standards/models/#core
+    given: "$"
+    then:
+      field: paths
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          minProperties: 1
+          not:
+            propertyNames:
+              not:
+                pattern: "(^|/)models$"
+
+  anthropic-message-has-request-body:
+    description: >-
+      A messages operation must declare a request body. Checked on the operation rather
+      than on the body, because a Spectral `then.field` aimed at an absent field is
+      silently skipped and the absence would never be reported.
+    message: "The messages operation declares no requestBody."
+    severity: error
+    documentationUrl: https://apicommons.org/standards/models/#core
+    given: "#MessagePaths.post"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          required: [requestBody]
+
+  anthropic-message-request-shape:
+    description: >-
+      A message request carries `model`, `messages` and `max_tokens`. The third is what
+      separates this dialect from the OpenAI one, where the same field is optional — a
+      client that omits it here gets a 400, which is the most common way a shim written
+      against the wrong dialect fails.
+    message: "The message request must require `model`, `messages` and `max_tokens`."
+    severity: error
+    documentationUrl: https://apicommons.org/standards/models/#core
+    given: "#MessagePaths.post.requestBody.content['application/json'].schema"
+    then:
+      function: schema
+      functionOptions:
+        # `required` may sit at the top level or in any allOf branch — upstream specs in
+        # this domain compose, and a rule that reads only the top level reports the
+        # canonical document as non-conformant.
+        schema:
+          allOf:
+          - anyOf:
+              - type: object
+                required: [required]
+                properties:
+                  required:
+                    type: array
+                    contains:
+                      const: model
+              - type: object
+                required: [allOf]
+                properties:
+                  allOf:
+                    type: array
+                    contains:
+                      type: object
+                      required: [required]
+                      properties:
+                        required:
+                          type: array
+                          contains:
+                            const: model
+          - anyOf:
+              - type: object
+                required: [required]
+                properties:
+                  required:
+                    type: array
+                    contains:
+                      const: messages
+              - type: object
+                required: [allOf]
+                properties:
+                  allOf:
+                    type: array
+                    contains:
+                      type: object
+                      required: [required]
+                      properties:
+                        required:
+                          type: array
+                          contains:
+                            const: messages
+          - anyOf:
+              - type: object
+                required: [required]
+                properties:
+                  required:
+                    type: array
+                    contains:
+                      const: max_tokens
+              - type: object
+                required: [allOf]
+                properties:
+                  allOf:
+                    type: array
+                    contains:
+                      type: object
+                      required: [required]
+                      properties:
+                        required:
+                          type: array
+                          contains:
+                            const: max_tokens
+
+  anthropic-message-response-shape:
+    description: >-
+      A message response carries `content`, an array of content blocks. A client reads
+      `content[0].text`; this is where the two dialects differ most visibly in the
+      response.
+    message: "The 200 response should expose `content`."
+    severity: warn
+    documentationUrl: https://apicommons.org/standards/models/#core
+    given: "#MessagePaths.post.responses['200'].content['application/json'].schema"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - type: object
+              required: [properties]
+              properties:
+                properties:
+                  type: object
+                  required: [content]
+            - type: object
+              required: [allOf]
+              properties:
+                allOf:
+                  type: array
+                  contains:
+                    type: object
+                    required: [properties]
+                    properties:
+                      properties:
+                        type: object
+                        required: [content]
+
+  anthropic-message-response-is-not-openai:
+    description: >-
+      A messages path whose response exposes `choices` is the OpenAI response shape
+      wearing an Anthropic path. Clients written against either dialect will break on it,
+      and the mismatch is invisible until runtime.
+    message: "This messages response exposes `choices`, which is the OpenAI shape, not this one."
+    severity: warn
+    documentationUrl: https://apicommons.org/standards/models/#core
+    given: "#MessagePaths.post.responses['200'].content['application/json'].schema"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          not:
+            anyOf:
+              - type: object
+                required: [properties]
+                properties:
+                  properties:
+                    type: object
+                    required: [choices]
+              - type: object
+                required: [allOf]
+                properties:
+                  allOf:
+                    type: array
+                    contains:
+                      type: object
+                      required: [properties]
+                      properties:
+                        properties:
+                          type: object
+                          required: [choices]
+
+  anthropic-models-response-shape:
+    description: >-
+      A models listing carries `data`. This is the field the conformance flow reads to
+      pick a model before sending a message.
+    message: "The 200 response should expose `data`."
+    severity: warn
+    documentationUrl: https://apicommons.org/standards/models/#core
+    given: "#ModelsPaths.get.responses['200'].content['application/json'].schema"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          anyOf:
+            - type: object
+              required: [properties]
+              properties:
+                properties:
+                  type: object
+                  required: [data]
+            - type: object
+              required: [allOf]
+              properties:
+                allOf:
+                  type: array
+                  contains:
+                    type: object
+                    required: [properties]
+                    properties:
+                      properties:
+                        type: object
+                        required: [data]

@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: CC-BY-NC-SA-4.0
 profile: openai-v1
 title: The OpenAI Interface
+originator: OpenAI
 generated: '2026-09-13'
 generated_by: scripts/build-profile.py
 upstream:
@@ -2127,6 +2128,10 @@ operations:
   adopters_declaring: 0
   percent_of_cohort: 0.0
   evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
 - operationId: beta_Getinputtokencounts
   method: POST
   path: /responses/input_tokens?beta=true
@@ -2134,6 +2139,10 @@ operations:
   adopters_declaring: 0
   percent_of_cohort: 0.0
   evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
 - operationId: beta_cancelResponse
   method: POST
   path: /responses/{response_id}/cancel?beta=true
@@ -2141,6 +2150,10 @@ operations:
   adopters_declaring: 0
   percent_of_cohort: 0.0
   evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
 - operationId: beta_listInputItems
   method: GET
   path: /responses/{response_id}/input_items?beta=true
@@ -2148,6 +2161,10 @@ operations:
   adopters_declaring: 0
   percent_of_cohort: 0.0
   evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
 - operationId: beta_deleteResponse
   method: DELETE
   path: /responses/{response_id}?beta=true
@@ -2155,6 +2172,10 @@ operations:
   adopters_declaring: 0
   percent_of_cohort: 0.0
   evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
 - operationId: beta_getResponse
   method: GET
   path: /responses/{response_id}?beta=true
@@ -2162,6 +2183,10 @@ operations:
   adopters_declaring: 0
   percent_of_cohort: 0.0
   evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
 - operationId: beta_createResponse
   method: POST
   path: /responses?beta=true
@@ -2169,6 +2194,10 @@ operations:
   adopters_declaring: 0
   percent_of_cohort: 0.0
   evidence: No adopter that publishes an OpenAPI declares this operation.
+  beta: true
+  beta_note: The upstream document expresses a preview surface as a query string on the path key. It is
+    graded here and excluded from the profile OpenAPI, where a path key carrying a query string would
+    not be a valid path.
 - operationId: Getprojectsafetyalert
   method: GET
   path: /safety/alerts/{id}

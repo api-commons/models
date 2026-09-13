@@ -1,0 +1,62 @@
+# Declares the core paths and gets them wrong, including the specific failure this
+# dialect invites: the OpenAI response shape served from an Anthropic path.
+openapi: 3.1.0
+info:
+  title: Nearly Compatible Messages API
+  version: 1.0.0
+paths:
+  # No requestBody at all.
+  /v1/messages:
+    post:
+      operationId: message
+      responses:
+        '200':
+          description: Something.
+  # A request missing max_tokens — the field Anthropic requires and OpenAI does not,
+  # which is the most common way a shim written against the wrong dialect fails — and
+  # an OpenAI-shaped response served from a messages path.
+  /api/v1/messages:
+    post:
+      operationId: messageAlt
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [model, messages]
+              properties:
+                model:
+                  type: string
+                messages:
+                  type: array
+                  items:
+                    type: object
+      responses:
+        '200':
+          description: A completion, in the other dialect.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [choices]
+                properties:
+                  choices:
+                    type: array
+                    items:
+                      type: object
+  /v1/models:
+    get:
+      operationId: listModels
+      responses:
+        '200':
+          description: Models.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  models:
+                    type: array
+                    items:
+                      type: string
