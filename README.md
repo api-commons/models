@@ -139,7 +139,7 @@ here as factual references to the interfaces being described.
 **Related**
 - [adopters](https://github.com/api-commons/adopters) — the schema behind the registry
 - [storage](https://github.com/api-commons/storage) · [open-data](https://github.com/api-commons/open-data) · [blockchain](https://github.com/api-commons/blockchain) — the other standards from practice
-- [api-validator](https://github.com/api-commons/api-validator) — lint in the browser
+- [common-openlint-validator](https://github.com/api-commons/common-openlint-validator) — lint in the browser
 
 ## License
 
